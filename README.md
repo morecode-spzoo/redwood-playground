@@ -1,5 +1,44 @@
 # README
 
+This repo was created to reproduce issue mentioned in:
+https://community.redwoodjs.com/t/integrate-custom-select-react-select-or-other-as-custom-redwood-component/3894/2
+
+**All issues are annotated with `FIXME:` comments.**
+
+Comments were added to explain what happens and what is expected.
+
+Repo is tagged with:
+
+`react-select-component`: Example of using React-Select to manage relation between data (multiple choice selection)
+`native-multi-select`: Example of using native select component with multiple option
+
+Issue description and reproduction:
+
+Seems that using `Controller` component and not passing `controller` prop fixes issue with connection to Redwood forms.
+It seems this is mainly GraphQL problem at this stage.
+See below:
+
+- Problem happens with BookSeries
+  - when editing a single series that books belong to it is not possible to save changes
+  - saving without changes will work as no books are being sent
+  - depending on how onChange is implemented either full `[Book]` object array is sent or just array of IDs
+  - with array of IDs app breaks or select ends up with X fields with no titles and no IDs to loop over
+
+- Other issues
+  - there is a problem with `EditBookSerieById` mutation as it reports that `book` cannot be queried (but it queries it nevertheless) and generating types or new prisma client does not help
+
+# Installation
+
+Uses SQLite for DB.
+
+1. Clone this repo and run `yarn install`
+2. run `yarn rw prisma migrate reset --force` to recreate the DB.
+3. run `yarn rw dev`
+4. In the broser go to: [Book Series Admin Page](http://localhost:8910/admin/book-series)
+5. Try to add new book to existing series
+6. To see that standard select works (other side of relation) go to: [Books Admin Page](http://localhost:8910/admin/books)
+
+
 Welcome to [RedwoodJS](https://redwoodjs.com)!
 
 > **Prerequisites**

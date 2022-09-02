@@ -75,6 +75,9 @@ const BookSerieForm = (props) => {
         books: ["cl7k9ur1q0028tgrcadj1f2za", "cl7k9ur200037tgrc0jw9suhc", "cl7k9ur280045tgrc3om2wm0c", "cl7k9ur2o0054tgrc53mrr3wc"] };
         Field "books" is not defined by type "UpdateBookSerieInput".
         */}
+
+        {/* FIXME: native select example*/}
+
         {/* <SelectField
           name="books"
           defaultValue={props.bookSerie?.books.map((book) => book.id)}
@@ -92,14 +95,7 @@ const BookSerieForm = (props) => {
           })}
         </SelectField> */}
 
-        {/*
-        Questions:
-
-        1. this implementation returns on save:
-        Variable "$input" got invalid value { idCode: "serie_stormlight_archive", title: "Stormlight Archive",
-        books: [[Object], [Object], [Object], [Object], [Object]] };
-        Field "books" is not defined by type "UpdateBookSerieInput".
-         */}
+        {/* FIXME: react-select example see inside component into onChange method*/}
         <ReactSelectMultipleChoice
           options={props.books}
           defaultValues={props.bookSerie?.books}
