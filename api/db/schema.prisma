@@ -10,9 +10,62 @@ generator client {
 
 // Define your own datamodels here and run `yarn redwood prisma migrate dev`
 // to create migrations for them and apply to your dev DB.
-// TODO: Please remove the following example:
-model UserExample {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+
+// model ModelExample {
+//   id String @id @default(cuid())
+
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
+
+model Author {
+  id        String       @id @default(cuid())
+  idCode    String       @unique
+  penName   String?
+  firstName String
+  lastName  String
+  books     BookAuthor[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BookAuthor {
+  id     String @id @default(cuid())
+  author Author @relation(fields: [authorId], references: [id])
+  book   Book   @relation(fields: [bookId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  authorId  String
+  bookId    String
+}
+
+model Book {
+  id       String        @id @default(cuid())
+  idCode   String        @unique
+  title    String
+  series   String?
+  authors  BookAuthor[]
+  releases BookRelease[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BookRelease {
+  id String @id @default(cuid())
+
+  releaseDate  DateTime @default(now())
+  releaseTitle String?
+  publisher    String
+  coverType    String?
+  releaseInfo  String?
+  country      String?
+  language     String?
+  book         Book?    @relation(fields: [bookId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  bookId    String?
 }
