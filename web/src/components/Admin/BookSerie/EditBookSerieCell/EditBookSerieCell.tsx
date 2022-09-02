@@ -13,6 +13,17 @@ export const QUERY = gql`
       id
       idCode
       title
+      #FIXME: Cannot query field "books" on type "BookSerie". Did you mean "Book"?GraphQL: Validation
+      # unclear why this happens as graphql.d.ts definition for BookSerie type is:
+      # export type BookSerie = {
+      #   __typename?: 'BookSerie'
+      #   books: Array<Maybe<Book>>
+      #   createdAt: Scalars['DateTime']
+      #   id: Scalars['String']
+      #   idCode: Scalars['String']
+      #   title: Scalars['String']
+      #   updatedAt: Scalars['DateTime']
+      # }
       books {
         id
         title

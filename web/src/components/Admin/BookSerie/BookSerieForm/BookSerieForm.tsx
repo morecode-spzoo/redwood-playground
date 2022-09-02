@@ -5,8 +5,11 @@ import {
   Label,
   TextField,
   Submit,
+  useForm,
   SelectField,
 } from '@redwoodjs/forms'
+
+import ReactSelectMultipleChoice from 'src/components/ReactSelectMultipleChoice/ReactSelectMultipleChoice'
 
 const BookSerieForm = (props) => {
   const onSubmit = (data) => {
@@ -67,7 +70,12 @@ const BookSerieForm = (props) => {
           Title
         </Label>
 
-        <SelectField
+        {/* This implementation returns on save:
+        Variable "$input" got invalid value { idCode: "serie_stormlight_archive", title: "Stormlight Archive",
+        books: ["cl7k9ur1q0028tgrcadj1f2za", "cl7k9ur200037tgrc0jw9suhc", "cl7k9ur280045tgrc3om2wm0c", "cl7k9ur2o0054tgrc53mrr3wc"] };
+        Field "books" is not defined by type "UpdateBookSerieInput".
+        */}
+        {/* <SelectField
           name="books"
           defaultValue={props.bookSerie?.books.map((book) => book.id)}
           className="rw-input"
@@ -80,9 +88,23 @@ const BookSerieForm = (props) => {
               <option value={book?.id} key={book?.id}>
                 {book.title}
               </option>
-            )
+            );
           })}
-        </SelectField>
+        </SelectField> */}
+
+        {/*
+        Questions:
+
+        1. this implementation returns on save:
+        Variable "$input" got invalid value { idCode: "serie_stormlight_archive", title: "Stormlight Archive",
+        books: [[Object], [Object], [Object], [Object], [Object]] };
+        Field "books" is not defined by type "UpdateBookSerieInput".
+         */}
+        <ReactSelectMultipleChoice
+          options={props.books}
+          defaultValues={props.bookSerie?.books}
+          name="books"
+        />
 
         <FieldError name="books" className="rw-field-error" />
 
