@@ -84,7 +84,7 @@ const BooksList = ({ books }) => {
             <th>Title</th>
             <th>Created at</th>
             <th>Updated at</th>
-            <th>Book serie id</th>
+            <th>Book series</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -96,7 +96,7 @@ const BooksList = ({ books }) => {
               <td>{truncate(book.title)}</td>
               <td>{timeTag(book.createdAt)}</td>
               <td>{timeTag(book.updatedAt)}</td>
-              <td>{truncate(book.bookSerieId)}</td>
+              <td>{truncate(book.series?.title)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

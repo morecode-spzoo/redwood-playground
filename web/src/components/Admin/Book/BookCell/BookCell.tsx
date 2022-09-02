@@ -10,6 +10,9 @@ export const QUERY = gql`
       id
       idCode
       title
+      series {
+        title
+      }
       createdAt
       updatedAt
       bookSerieId
@@ -25,6 +28,9 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error.message}</div>
 )
 
-export const Success = ({ book }: CellSuccessProps<FindBookById>) => {
-  return <Book book={book} />
+export const Success = ({
+  book,
+  bookSeries,
+}: CellSuccessProps<FindBookById>) => {
+  return <Book book={book} series={bookSeries} />
 }

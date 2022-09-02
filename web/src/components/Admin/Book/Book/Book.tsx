@@ -45,7 +45,7 @@ const checkboxInputTag = (checked) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
-const Book = ({ book }) => {
+const Book = ({ book, series }) => {
   const [deleteBook] = useMutation(DELETE_BOOK_MUTATION, {
     onCompleted: () => {
       toast.success('Book deleted')
@@ -66,28 +66,35 @@ const Book = ({ book }) => {
     <>
       <div className="rw-segment">
         <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">Book {book.id} Detail</h2>
+          <h2 className="rw-heading rw-heading-secondary">
+            Book {book.id} Detail
+          </h2>
         </header>
         <table className="rw-table">
           <tbody>
             <tr>
               <th>Id</th>
               <td>{book.id}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Id code</th>
               <td>{book.idCode}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Title</th>
               <td>{book.title}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Created at</th>
               <td>{timeTag(book.createdAt)}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Updated at</th>
               <td>{timeTag(book.updatedAt)}</td>
-            </tr><tr>
-              <th>Book serie id</th>
-              <td>{book.bookSerieId}</td>
+            </tr>
+            <tr>
+              <th>Book series</th>
+              <td>{book.series.title}</td>
             </tr>
           </tbody>
         </table>

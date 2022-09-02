@@ -16,6 +16,13 @@ export const QUERY = gql`
       createdAt
       updatedAt
       bookSerieId
+      series {
+        title
+      }
+    }
+    bookSeries {
+      id
+      title
     }
   }
 `
@@ -38,7 +45,10 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error.message}</div>
 )
 
-export const Success = ({ book }: CellSuccessProps<EditBookById>) => {
+export const Success = ({
+  book,
+  bookSeries,
+}: CellSuccessProps<EditBookById>) => {
   const [updateBook, { loading, error }] = useMutation(UPDATE_BOOK_MUTATION, {
     onCompleted: () => {
       toast.success('Book updated')
@@ -59,7 +69,13 @@ export const Success = ({ book }: CellSuccessProps<EditBookById>) => {
         <h2 className="rw-heading rw-heading-secondary">Edit Book {book.id}</h2>
       </header>
       <div className="rw-segment-main">
-        <BookForm book={book} onSave={onSave} error={error} loading={loading} />
+        <BookForm
+          book={book}
+          series={bookSeries}
+          onSave={onSave}
+          error={error}
+          loading={loading}
+        />
       </div>
     </div>
   )

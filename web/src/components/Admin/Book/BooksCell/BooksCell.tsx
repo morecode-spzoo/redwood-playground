@@ -14,6 +14,9 @@ export const QUERY = gql`
       createdAt
       updatedAt
       bookSerieId
+      series {
+        title
+      }
     }
   }
 `
@@ -24,10 +27,7 @@ export const Empty = () => {
   return (
     <div className="rw-text-center">
       {'No books yet. '}
-      <Link
-        to={routes.adminNewBook()}
-        className="rw-link"
-      >
+      <Link to={routes.adminNewBook()} className="rw-link">
         {'Create one?'}
       </Link>
     </div>
