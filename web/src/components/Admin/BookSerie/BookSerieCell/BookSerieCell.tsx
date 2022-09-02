@@ -10,6 +10,10 @@ export const QUERY = gql`
       id
       idCode
       title
+      books {
+        id
+        title
+      }
       createdAt
       updatedAt
     }

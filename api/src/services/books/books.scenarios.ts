@@ -4,28 +4,28 @@ export const standard = defineScenario<Prisma.BookCreateArgs>({
   book: {
     one: {
       data: {
-        idCode: 'String3461979',
+        idCode: 'String4913237',
         title: 'String',
-        updatedAt: '2022-09-02T09:29:38Z',
+        updatedAt: '2022-09-02T10:29:58Z',
         series: {
           create: {
-            idCode: 'String1726628',
+            idCode: 'String5505560',
             title: 'String',
-            updatedAt: '2022-09-02T09:29:38Z',
+            updatedAt: '2022-09-02T10:29:58Z',
           },
         },
       },
     },
     two: {
       data: {
-        idCode: 'String4679117',
+        idCode: 'String8707656',
         title: 'String',
-        updatedAt: '2022-09-02T09:29:38Z',
+        updatedAt: '2022-09-02T10:29:58Z',
         series: {
           create: {
-            idCode: 'String356177',
+            idCode: 'String3175785',
             title: 'String',
-            updatedAt: '2022-09-02T09:29:38Z',
+            updatedAt: '2022-09-02T10:29:58Z',
           },
         },
       },

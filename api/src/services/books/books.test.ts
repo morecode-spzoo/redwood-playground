@@ -23,16 +23,16 @@ describe('books', () => {
   scenario('creates a book', async (scenario: StandardScenario) => {
     const result = await createBook({
       input: {
-        idCode: 'String4830681',
+        idCode: 'String3884247',
         title: 'String',
-        updatedAt: '2022-09-02T09:29:38Z',
+        updatedAt: '2022-09-02T10:29:58Z',
         bookSerieId: scenario.book.two.bookSerieId,
       },
     });
 
-    expect(result.idCode).toEqual('String4830681');
+    expect(result.idCode).toEqual('String3884247');
     expect(result.title).toEqual('String');
-    expect(result.updatedAt).toEqual('2022-09-02T09:29:38Z');
+    expect(result.updatedAt).toEqual('2022-09-02T10:29:58Z');
     expect(result.bookSerieId).toEqual(scenario.book.two.bookSerieId);
   });
 
@@ -40,10 +40,10 @@ describe('books', () => {
     const original = await book({ id: scenario.book.one.id });
     const result = await updateBook({
       id: original.id,
-      input: { idCode: 'String45620562' },
+      input: { idCode: 'String56834132' },
     });
 
-    expect(result.idCode).toEqual('String45620562');
+    expect(result.idCode).toEqual('String56834132');
   });
 
   scenario('deletes a book', async (scenario: StandardScenario) => {

@@ -13,17 +13,32 @@ export const QUERY = gql`
       id
       idCode
       title
+      books {
+        id
+        title
+      }
       createdAt
       updatedAt
+    }
+    books {
+      id
+      title
     }
   }
 `
 const UPDATE_BOOK_SERIE_MUTATION = gql`
-  mutation UpdateBookSerieMutation($id: String!, $input: UpdateBookSerieInput!) {
+  mutation UpdateBookSerieMutation(
+    $id: String!
+    $input: UpdateBookSerieInput!
+  ) {
     updateBookSerie(id: $id, input: $input) {
       id
       idCode
       title
+      books {
+        id
+        title
+      }
       createdAt
       updatedAt
     }
@@ -36,16 +51,22 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error.message}</div>
 )
 
-export const Success = ({ bookSerie }: CellSuccessProps<EditBookSerieById>) => {
-  const [updateBookSerie, { loading, error }] = useMutation(UPDATE_BOOK_SERIE_MUTATION, {
-    onCompleted: () => {
-      toast.success('BookSerie updated')
-      navigate(routes.adminBookSeries())
-    },
-    onError: (error) => {
-      toast.error(error.message)
-    },
-  })
+export const Success = ({
+  bookSerie,
+  books,
+}: CellSuccessProps<EditBookSerieById>) => {
+  const [updateBookSerie, { loading, error }] = useMutation(
+    UPDATE_BOOK_SERIE_MUTATION,
+    {
+      onCompleted: () => {
+        toast.success('BookSerie updated')
+        navigate(routes.adminBookSeries())
+      },
+      onError: (error) => {
+        toast.error(error.message)
+      },
+    }
+  )
 
   const onSave = (input, id) => {
     updateBookSerie({ variables: { id, input } })
@@ -54,10 +75,18 @@ export const Success = ({ bookSerie }: CellSuccessProps<EditBookSerieById>) => {
   return (
     <div className="rw-segment">
       <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">Edit BookSerie {bookSerie.id}</h2>
+        <h2 className="rw-heading rw-heading-secondary">
+          Edit Book Series {bookSerie.title}
+        </h2>
       </header>
       <div className="rw-segment-main">
-        <BookSerieForm bookSerie={bookSerie} onSave={onSave} error={error} loading={loading} />
+        <BookSerieForm
+          bookSerie={bookSerie}
+          books={books}
+          onSave={onSave}
+          error={error}
+          loading={loading}
+        />
       </div>
     </div>
   )

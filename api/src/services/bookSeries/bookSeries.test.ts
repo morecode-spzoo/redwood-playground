@@ -29,25 +29,25 @@ describe('bookSeries', () => {
   scenario('creates a bookSerie', async () => {
     const result = await createBookSerie({
       input: {
-        idCode: 'String6006788',
+        idCode: 'String6413050',
         title: 'String',
-        updatedAt: '2022-09-02T09:30:05Z',
+        updatedAt: '2022-09-02T10:46:12Z',
       },
     });
 
-    expect(result.idCode).toEqual('String6006788');
+    expect(result.idCode).toEqual('String6413050');
     expect(result.title).toEqual('String');
-    expect(result.updatedAt).toEqual('2022-09-02T09:30:05Z');
+    expect(result.updatedAt).toEqual('2022-09-02T10:46:12Z');
   });
 
   scenario('updates a bookSerie', async (scenario: StandardScenario) => {
     const original = await bookSerie({ id: scenario.bookSerie.one.id });
     const result = await updateBookSerie({
       id: original.id,
-      input: { idCode: 'String31172482' },
+      input: { idCode: 'String10555862' },
     });
 
-    expect(result.idCode).toEqual('String31172482');
+    expect(result.idCode).toEqual('String10555862');
   });
 
   scenario('deletes a bookSerie', async (scenario: StandardScenario) => {

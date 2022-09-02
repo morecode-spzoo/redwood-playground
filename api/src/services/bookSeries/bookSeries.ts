@@ -43,6 +43,6 @@ export const deleteBookSerie: MutationResolvers['deleteBookSerie'] = ({
 };
 
 export const BookSerie: BookSerieResolvers = {
-  Book: (_obj, { root }) =>
-    db.bookSerie.findUnique({ where: { id: root.id } }).Book(),
+  books: (_obj, { root }) =>
+    db.bookSerie.findUnique({ where: { id: root.id } }).books(),
 };

@@ -66,23 +66,33 @@ const BookSerie = ({ bookSerie }) => {
     <>
       <div className="rw-segment">
         <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">BookSerie {bookSerie.id} Detail</h2>
+          <h2 className="rw-heading rw-heading-secondary">
+            BookSerie {bookSerie.id} Detail
+          </h2>
         </header>
         <table className="rw-table">
           <tbody>
             <tr>
               <th>Id</th>
               <td>{bookSerie.id}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Id code</th>
               <td>{bookSerie.idCode}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Title</th>
               <td>{bookSerie.title}</td>
-            </tr><tr>
+            </tr>
+            <tr>
+              <th>Books in series</th>
+              <td>{bookSerie.books?.map((book) => book.title + ', ')}</td>
+            </tr>
+            <tr>
               <th>Created at</th>
               <td>{timeTag(bookSerie.createdAt)}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Updated at</th>
               <td>{timeTag(bookSerie.updatedAt)}</td>
             </tr>

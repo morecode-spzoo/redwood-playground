@@ -61,7 +61,7 @@ model BookSerie {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Book      Book[]
+  books     Book[]
 }
 
 model BookRelease {
