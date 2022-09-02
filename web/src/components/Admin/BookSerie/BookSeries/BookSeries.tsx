@@ -4,11 +4,11 @@ import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { QUERY } from 'src/components/Admin/Book/BooksCell'
+import { QUERY } from 'src/components/Admin/BookSerie/BookSeriesCell'
 
-const DELETE_BOOK_MUTATION = gql`
-  mutation DeleteBookMutation($id: String!) {
-    deleteBook(id: $id) {
+const DELETE_BOOK_SERIE_MUTATION = gql`
+  mutation DeleteBookSerieMutation($id: String!) {
+    deleteBookSerie(id: $id) {
       id
     }
   }
@@ -53,10 +53,10 @@ const checkboxInputTag = (checked) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
-const BooksList = ({ books }) => {
-  const [deleteBook] = useMutation(DELETE_BOOK_MUTATION, {
+const BookSeriesList = ({ bookSeries }) => {
+  const [deleteBookSerie] = useMutation(DELETE_BOOK_SERIE_MUTATION, {
     onCompleted: () => {
-      toast.success('Book deleted')
+      toast.success('BookSerie deleted')
     },
     onError: (error) => {
       toast.error(error.message)
@@ -69,8 +69,8 @@ const BooksList = ({ books }) => {
   })
 
   const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete book ' + id + '?')) {
-      deleteBook({ variables: { id } })
+    if (confirm('Are you sure you want to delete bookSerie ' + id + '?')) {
+      deleteBookSerie({ variables: { id } })
     }
   }
 
@@ -84,40 +84,38 @@ const BooksList = ({ books }) => {
             <th>Title</th>
             <th>Created at</th>
             <th>Updated at</th>
-            <th>Book serie id</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          {books.map((book) => (
-            <tr key={book.id}>
-              <td>{truncate(book.id)}</td>
-              <td>{truncate(book.idCode)}</td>
-              <td>{truncate(book.title)}</td>
-              <td>{timeTag(book.createdAt)}</td>
-              <td>{timeTag(book.updatedAt)}</td>
-              <td>{truncate(book.bookSerieId)}</td>
+          {bookSeries.map((bookSerie) => (
+            <tr key={bookSerie.id}>
+              <td>{truncate(bookSerie.id)}</td>
+              <td>{truncate(bookSerie.idCode)}</td>
+              <td>{truncate(bookSerie.title)}</td>
+              <td>{timeTag(bookSerie.createdAt)}</td>
+              <td>{timeTag(bookSerie.updatedAt)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link
-                    to={routes.adminBook({ id: book.id })}
-                    title={'Show book ' + book.id + ' detail'}
+                    to={routes.adminBookSerie({ id: bookSerie.id })}
+                    title={'Show bookSerie ' + bookSerie.id + ' detail'}
                     className="rw-button rw-button-small"
                   >
                     Show
                   </Link>
                   <Link
-                    to={routes.adminEditBook({ id: book.id })}
-                    title={'Edit book ' + book.id}
+                    to={routes.adminEditBookSerie({ id: bookSerie.id })}
+                    title={'Edit bookSerie ' + bookSerie.id}
                     className="rw-button rw-button-small rw-button-blue"
                   >
                     Edit
                   </Link>
                   <button
                     type="button"
-                    title={'Delete book ' + book.id}
+                    title={'Delete bookSerie ' + bookSerie.id}
                     className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(book.id)}
+                    onClick={() => onDeleteClick(bookSerie.id)}
                   >
                     Delete
                   </button>
@@ -131,4 +129,4 @@ const BooksList = ({ books }) => {
   )
 }
 
-export default BooksList
+export default BookSeriesList

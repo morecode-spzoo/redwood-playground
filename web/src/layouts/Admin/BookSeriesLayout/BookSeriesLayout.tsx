@@ -1,28 +1,28 @@
 import { Link, routes } from '@redwoodjs/router'
 import { Toaster } from '@redwoodjs/web/toast'
 
-type BookLayoutProps = {
+type BookSerieLayoutProps = {
   children: React.ReactNode
 }
 
-const BooksLayout = ({ children }: BookLayoutProps) => {
+const BookSeriesLayout = ({ children }: BookSerieLayoutProps) => {
   return (
     <div className="rw-scaffold">
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
       <header className="rw-header">
         <h1 className="rw-heading rw-heading-primary">
           <Link
-            to={routes.adminBooks()}
+            to={routes.adminBookSeries()}
             className="rw-link"
           >
-            Books
+            BookSeries
           </Link>
         </h1>
         <Link
-          to={routes.adminNewBook()}
+          to={routes.adminNewBookSerie()}
           className="rw-button rw-button-green"
         >
-          <div className="rw-button-icon">+</div> New Book
+          <div className="rw-button-icon">+</div> New BookSerie
         </Link>
       </header>
       <main className="rw-main">{children}</main>
@@ -30,4 +30,4 @@ const BooksLayout = ({ children }: BookLayoutProps) => {
   )
 }
 
-export default BooksLayout
+export default BookSeriesLayout

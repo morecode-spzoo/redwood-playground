@@ -4,9 +4,9 @@ import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-const DELETE_BOOK_MUTATION = gql`
-  mutation DeleteBookMutation($id: String!) {
-    deleteBook(id: $id) {
+const DELETE_BOOK_SERIE_MUTATION = gql`
+  mutation DeleteBookSerieMutation($id: String!) {
+    deleteBookSerie(id: $id) {
       id
     }
   }
@@ -45,11 +45,11 @@ const checkboxInputTag = (checked) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
-const Book = ({ book }) => {
-  const [deleteBook] = useMutation(DELETE_BOOK_MUTATION, {
+const BookSerie = ({ bookSerie }) => {
+  const [deleteBookSerie] = useMutation(DELETE_BOOK_SERIE_MUTATION, {
     onCompleted: () => {
-      toast.success('Book deleted')
-      navigate(routes.adminBooks())
+      toast.success('BookSerie deleted')
+      navigate(routes.adminBookSeries())
     },
     onError: (error) => {
       toast.error(error.message)
@@ -57,8 +57,8 @@ const Book = ({ book }) => {
   })
 
   const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete book ' + id + '?')) {
-      deleteBook({ variables: { id } })
+    if (confirm('Are you sure you want to delete bookSerie ' + id + '?')) {
+      deleteBookSerie({ variables: { id } })
     }
   }
 
@@ -66,35 +66,32 @@ const Book = ({ book }) => {
     <>
       <div className="rw-segment">
         <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">Book {book.id} Detail</h2>
+          <h2 className="rw-heading rw-heading-secondary">BookSerie {bookSerie.id} Detail</h2>
         </header>
         <table className="rw-table">
           <tbody>
             <tr>
               <th>Id</th>
-              <td>{book.id}</td>
+              <td>{bookSerie.id}</td>
             </tr><tr>
               <th>Id code</th>
-              <td>{book.idCode}</td>
+              <td>{bookSerie.idCode}</td>
             </tr><tr>
               <th>Title</th>
-              <td>{book.title}</td>
+              <td>{bookSerie.title}</td>
             </tr><tr>
               <th>Created at</th>
-              <td>{timeTag(book.createdAt)}</td>
+              <td>{timeTag(bookSerie.createdAt)}</td>
             </tr><tr>
               <th>Updated at</th>
-              <td>{timeTag(book.updatedAt)}</td>
-            </tr><tr>
-              <th>Book serie id</th>
-              <td>{book.bookSerieId}</td>
+              <td>{timeTag(bookSerie.updatedAt)}</td>
             </tr>
           </tbody>
         </table>
       </div>
       <nav className="rw-button-group">
         <Link
-          to={routes.adminEditBook({ id: book.id })}
+          to={routes.adminEditBookSerie({ id: bookSerie.id })}
           className="rw-button rw-button-blue"
         >
           Edit
@@ -102,7 +99,7 @@ const Book = ({ book }) => {
         <button
           type="button"
           className="rw-button rw-button-red"
-          onClick={() => onDeleteClick(book.id)}
+          onClick={() => onDeleteClick(bookSerie.id)}
         >
           Delete
         </button>
@@ -111,4 +108,4 @@ const Book = ({ book }) => {
   )
 }
 
-export default Book
+export default BookSerie

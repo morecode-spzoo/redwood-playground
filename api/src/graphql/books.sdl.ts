@@ -3,11 +3,12 @@ export const schema = gql`
     id: String!
     idCode: String!
     title: String!
-    series: String
+    series: BookSerie!
     authors: [BookAuthor]!
     releases: [BookRelease]!
     createdAt: DateTime!
     updatedAt: DateTime!
+    bookSerieId: String!
   }
 
   type Query {
@@ -18,13 +19,13 @@ export const schema = gql`
   input CreateBookInput {
     idCode: String!
     title: String!
-    series: String
+    bookSerieId: String!
   }
 
   input UpdateBookInput {
     idCode: String
     title: String
-    series: String
+    bookSerieId: String
   }
 
   type Mutation {
@@ -32,4 +33,4 @@ export const schema = gql`
     updateBook(id: String!, input: UpdateBookInput!): Book! @requireAuth
     deleteBook(id: String!): Book! @requireAuth
   }
-`
+`;

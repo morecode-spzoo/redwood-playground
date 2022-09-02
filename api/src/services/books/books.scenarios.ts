@@ -1,22 +1,36 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
 export const standard = defineScenario<Prisma.BookCreateArgs>({
   book: {
     one: {
       data: {
-        idCode: 'String8339848',
+        idCode: 'String3461979',
         title: 'String',
-        updatedAt: '2022-09-02T08:37:51Z',
+        updatedAt: '2022-09-02T09:29:38Z',
+        series: {
+          create: {
+            idCode: 'String1726628',
+            title: 'String',
+            updatedAt: '2022-09-02T09:29:38Z',
+          },
+        },
       },
     },
     two: {
       data: {
-        idCode: 'String7857161',
+        idCode: 'String4679117',
         title: 'String',
-        updatedAt: '2022-09-02T08:37:51Z',
+        updatedAt: '2022-09-02T09:29:38Z',
+        series: {
+          create: {
+            idCode: 'String356177',
+            title: 'String',
+            updatedAt: '2022-09-02T09:29:38Z',
+          },
+        },
       },
     },
   },
-})
+});
 
-export type StandardScenario = typeof standard
+export type StandardScenario = typeof standard;

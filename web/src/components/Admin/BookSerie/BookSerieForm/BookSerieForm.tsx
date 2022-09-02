@@ -9,7 +9,7 @@ import {
 
 
 
-const BookForm = (props) => {
+const BookSerieForm = (props) => {
   const onSubmit = (data) => {
 
   
@@ -19,10 +19,7 @@ const BookForm = (props) => {
     
     
   
-    
-    
-  
-    props.onSave(data, props?.book?.id)
+    props.onSave(data, props?.bookSerie?.id)
   }
 
   return (
@@ -45,7 +42,7 @@ const BookForm = (props) => {
         
           <TextField
             name="idCode"
-            defaultValue={props.book?.idCode}
+            defaultValue={props.bookSerie?.idCode}
             className="rw-input"
             errorClassName="rw-input rw-input-error"
             validation={{ required: true }}
@@ -64,7 +61,7 @@ const BookForm = (props) => {
         
           <TextField
             name="title"
-            defaultValue={props.book?.title}
+            defaultValue={props.bookSerie?.title}
             className="rw-input"
             errorClassName="rw-input rw-input-error"
             validation={{ required: true }}
@@ -72,25 +69,6 @@ const BookForm = (props) => {
         
 
         <FieldError name="title" className="rw-field-error" />
-
-        <Label
-          name="bookSerieId"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Book serie id
-        </Label>
-        
-          <TextField
-            name="bookSerieId"
-            defaultValue={props.book?.bookSerieId}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
-
-        <FieldError name="bookSerieId" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit
@@ -105,4 +83,4 @@ const BookForm = (props) => {
   )
 }
 
-export default BookForm
+export default BookSerieForm

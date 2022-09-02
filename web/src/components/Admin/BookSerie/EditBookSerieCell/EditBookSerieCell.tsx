@@ -1,33 +1,31 @@
-import type { EditBookById } from 'types/graphql'
+import type { EditBookSerieById } from 'types/graphql'
 
 import { navigate, routes } from '@redwoodjs/router'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import BookForm from 'src/components/Admin/Book/BookForm'
+import BookSerieForm from 'src/components/Admin/BookSerie/BookSerieForm'
 
 export const QUERY = gql`
-  query EditBookById($id: String!) {
-    book: book(id: $id) {
+  query EditBookSerieById($id: String!) {
+    bookSerie: bookSerie(id: $id) {
       id
       idCode
       title
       createdAt
       updatedAt
-      bookSerieId
     }
   }
 `
-const UPDATE_BOOK_MUTATION = gql`
-  mutation UpdateBookMutation($id: String!, $input: UpdateBookInput!) {
-    updateBook(id: $id, input: $input) {
+const UPDATE_BOOK_SERIE_MUTATION = gql`
+  mutation UpdateBookSerieMutation($id: String!, $input: UpdateBookSerieInput!) {
+    updateBookSerie(id: $id, input: $input) {
       id
       idCode
       title
       createdAt
       updatedAt
-      bookSerieId
     }
   }
 `
@@ -38,11 +36,11 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error.message}</div>
 )
 
-export const Success = ({ book }: CellSuccessProps<EditBookById>) => {
-  const [updateBook, { loading, error }] = useMutation(UPDATE_BOOK_MUTATION, {
+export const Success = ({ bookSerie }: CellSuccessProps<EditBookSerieById>) => {
+  const [updateBookSerie, { loading, error }] = useMutation(UPDATE_BOOK_SERIE_MUTATION, {
     onCompleted: () => {
-      toast.success('Book updated')
-      navigate(routes.adminBooks())
+      toast.success('BookSerie updated')
+      navigate(routes.adminBookSeries())
     },
     onError: (error) => {
       toast.error(error.message)
@@ -50,16 +48,16 @@ export const Success = ({ book }: CellSuccessProps<EditBookById>) => {
   })
 
   const onSave = (input, id) => {
-    updateBook({ variables: { id, input } })
+    updateBookSerie({ variables: { id, input } })
   }
 
   return (
     <div className="rw-segment">
       <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">Edit Book {book.id}</h2>
+        <h2 className="rw-heading rw-heading-secondary">Edit BookSerie {bookSerie.id}</h2>
       </header>
       <div className="rw-segment-main">
-        <BookForm book={book} onSave={onSave} error={error} loading={loading} />
+        <BookSerieForm bookSerie={bookSerie} onSave={onSave} error={error} loading={loading} />
       </div>
     </div>
   )

@@ -1,19 +1,18 @@
-import type { FindBooks } from 'types/graphql'
+import type { FindBookSeries } from 'types/graphql'
 
 import { Link, routes } from '@redwoodjs/router'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import Books from 'src/components/Admin/Book/Books'
+import BookSeries from 'src/components/Admin/BookSerie/BookSeries'
 
 export const QUERY = gql`
-  query FindBooks {
-    books {
+  query FindBookSeries {
+    bookSeries {
       id
       idCode
       title
       createdAt
       updatedAt
-      bookSerieId
     }
   }
 `
@@ -23,9 +22,9 @@ export const Loading = () => <div>Loading...</div>
 export const Empty = () => {
   return (
     <div className="rw-text-center">
-      {'No books yet. '}
+      {'No bookSeries yet. '}
       <Link
-        to={routes.adminNewBook()}
+        to={routes.adminNewBookSerie()}
         className="rw-link"
       >
         {'Create one?'}
@@ -38,6 +37,6 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error.message}</div>
 )
 
-export const Success = ({ books }: CellSuccessProps<FindBooks>) => {
-  return <Books books={books} />
+export const Success = ({ bookSeries }: CellSuccessProps<FindBookSeries>) => {
+  return <BookSeries bookSeries={bookSeries} />
 }

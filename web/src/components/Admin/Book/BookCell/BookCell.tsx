@@ -10,9 +10,9 @@ export const QUERY = gql`
       id
       idCode
       title
-      series
       createdAt
       updatedAt
+      bookSerieId
     }
   }
 `
