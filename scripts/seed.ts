@@ -4,6 +4,7 @@ import { authorDataSeed } from './seed-data/authorDataSeed'
 import { bookAuthorsDataSeed } from './seed-data/bookAuthorsDataSeed'
 import { bookDataSeed } from './seed-data/bookDataSeed'
 import { bookReleasesDataSeed } from './seed-data/bookReleasesDataSeed'
+import { bookSerieDataSeed } from './seed-data/bookSerieDataSeed'
 
 export default async () => {
   enum debugLevel {
@@ -105,6 +106,7 @@ export default async () => {
     // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
     // @see: https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#createmany
     await seedTable('Authors', authorDataSeed, db.author)
+    await seedTable('Series', bookSerieDataSeed, db.bookSerie)
     await seedTable('Books', bookDataSeed, db.book)
     await seedTable('Book Authors', bookAuthorsDataSeed, db.bookAuthor)
     await seedTable('Book Releases', bookReleasesDataSeed, db.bookRelease)
