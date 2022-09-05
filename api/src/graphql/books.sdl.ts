@@ -3,7 +3,7 @@ export const schema = gql`
     id: String!
     idCode: String!
     title: String!
-    series: BookSerie!
+    series: BookSerie
     authors: [BookAuthor]!
     releases: [BookRelease]!
     createdAt: DateTime!

@@ -29,11 +29,12 @@ export const bookDataSeed = [
   {
     idCode: 'stormlight_004',
     title: 'Rhythm of War',
-    series: {
-      connect: {
-        idCode: 'serie_stormlight_archive',
-      },
-    },
+    // intentionally removed series to fix GraphQL as well as allow creation of books without serie assigned
+    // series: {
+    //   connect: {
+    //     idCode: 'serie_stormlight_archive',
+    //   },
+    // },
   },
   {
     idCode: 'wheel_of_time_001',
@@ -80,4 +81,4 @@ export const bookDataSeed = [
       },
     },
   },
-]
+];

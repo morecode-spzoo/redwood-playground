@@ -55,13 +55,13 @@ model Book {
   id       String        @id @default(cuid())
   idCode   String        @unique
   title    String
-  series   BookSerie     @relation(fields: [bookSerieId], references: [id])
+  series   BookSerie?    @relation(fields: [bookSerieId], references: [id])
   authors  BookAuthor[]
   releases BookRelease[]
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  bookSerieId String
+  bookSerieId String?
 }
 
 model BookSerie {

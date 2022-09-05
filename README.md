@@ -7,6 +7,12 @@ https://community.redwoodjs.com/t/integrate-custom-select-react-select-or-other-
 
 Comments were added to explain what happens and what is expected.
 
+## Documentation - Lessons Learned
+
+All fixed issues are documented in the `docs` folder.
+
+See `.md` files in `[root]/docs/` to learn how to implement some of basic functionality in RedwoodJS not directly covered by tutorial series.
+
 ## Tags
 
 Repo is tagged with:
@@ -75,3 +81,5 @@ System:
   npmPackages:
     @redwoodjs/core: 2.2.3 => 2.2.3
 ```
+
+
