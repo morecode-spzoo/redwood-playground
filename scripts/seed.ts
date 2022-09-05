@@ -1,10 +1,11 @@
-import { db } from 'api/src/lib/db'
+import { db } from 'api/src/lib/db';
 
-import { authorDataSeed } from './seed-data/authorDataSeed'
-import { bookAuthorsDataSeed } from './seed-data/bookAuthorsDataSeed'
-import { bookDataSeed } from './seed-data/bookDataSeed'
-import { bookReleasesDataSeed } from './seed-data/bookReleasesDataSeed'
-import { bookSerieDataSeed } from './seed-data/bookSerieDataSeed'
+import { authorDataSeed } from './seed-data/authorDataSeed';
+import { bookAuthorsDataSeed } from './seed-data/bookAuthorsDataSeed';
+import { bookDataSeed } from './seed-data/bookDataSeed';
+import { bookReleasesDataSeed } from './seed-data/bookReleasesDataSeed';
+import { bookSerieDataSeed } from './seed-data/bookSerieDataSeed';
+import { userDataSeed } from './seed-data/userDataSeed';
 
 export default async () => {
   enum debugLevel {
@@ -26,31 +27,31 @@ export default async () => {
     debug = debugLevel.basic
   ) => {
     if (debug >= debugLevel.basic) {
-      console.debug(`-------------------------------------------------`)
-      console.debug(`Start: Seeding table with ${seedEntityDisplayName}`)
+      console.debug(`-------------------------------------------------`);
+      console.debug(`Start: Seeding table with ${seedEntityDisplayName}`);
     }
 
     if (debug >= debugLevel.rowEntries) {
-      console.debug(`${seedEntityDisplayName}: `, seedData)
+      console.debug(`${seedEntityDisplayName}: `, seedData);
     }
 
     for (const item of seedData) {
       if (debug >= debugLevel.rowEntries) {
-        console.debug('Adding item: ', item)
+        console.debug('Adding item: ', item);
       }
 
       try {
         await seeder.create({
           data: item,
-        })
+        });
       } catch (e) {
-        console.error(`Error while seeding ${seedEntityDisplayName}: `, e)
+        console.error(`Error while seeding ${seedEntityDisplayName}: `, e);
       }
     }
     if (debug >= debugLevel.basic) {
-      console.debug(`DONE: Seeding table with ${seedEntityDisplayName}`)
+      console.debug(`DONE: Seeding table with ${seedEntityDisplayName}`);
     }
-  }
+  };
 
   const updateTable = async (
     updateEntityDisplayName,
@@ -59,29 +60,29 @@ export default async () => {
     debug = debugLevel.basic
   ) => {
     if (debug >= debugLevel.basic) {
-      console.debug(`-------------------------------------------------`)
-      console.debug(`Start: Updating table with ${updateEntityDisplayName}`)
+      console.debug(`-------------------------------------------------`);
+      console.debug(`Start: Updating table with ${updateEntityDisplayName}`);
     }
 
     if (debug >= debugLevel.rowEntries) {
-      console.debug(`${updateEntityDisplayName}: `, updateData)
+      console.debug(`${updateEntityDisplayName}: `, updateData);
     }
 
     for (const item of updateData) {
       if (debug >= debugLevel.rowEntries) {
-        console.debug('Updating item: ', item)
+        console.debug('Updating item: ', item);
       }
 
       try {
-        await updater.update(item)
+        await updater.update(item);
       } catch (e) {
-        console.error(`Error while updating ${updateEntityDisplayName}: `, e)
+        console.error(`Error while updating ${updateEntityDisplayName}: `, e);
       }
     }
     if (debug >= debugLevel.basic) {
-      console.debug(`DONE: Updating table with ${updateEntityDisplayName}`)
+      console.debug(`DONE: Updating table with ${updateEntityDisplayName}`);
     }
-  }
+  };
 
   try {
     //
@@ -101,15 +102,16 @@ export default async () => {
     // ]
     console.log(
       "\nUsing the default './scripts/seed.{js,ts}' template\nEdit the file to add seed data\n"
-    )
+    );
 
     // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
     // @see: https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#createmany
-    await seedTable('Authors', authorDataSeed, db.author)
-    await seedTable('Series', bookSerieDataSeed, db.bookSerie)
-    await seedTable('Books', bookDataSeed, db.book)
-    await seedTable('Book Authors', bookAuthorsDataSeed, db.bookAuthor)
-    await seedTable('Book Releases', bookReleasesDataSeed, db.bookRelease)
+    await seedTable('Authors', authorDataSeed, db.author);
+    await seedTable('Series', bookSerieDataSeed, db.bookSerie);
+    await seedTable('Books', bookDataSeed, db.book);
+    await seedTable('Book Authors', bookAuthorsDataSeed, db.bookAuthor);
+    await seedTable('Book Releases', bookReleasesDataSeed, db.bookRelease);
+    await seedTable('Users', userDataSeed, db.user);
     //
     // Change to match your data model and seeding needs
     //
@@ -118,7 +120,7 @@ export default async () => {
     //   console.log(record)
     // })
   } catch (error) {
-    console.warn('Please define your seed data.')
-    console.error(error)
+    console.warn('Please define your seed data.');
+    console.error(error);
   }
-}
+};

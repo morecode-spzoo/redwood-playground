@@ -7,12 +7,17 @@ https://community.redwoodjs.com/t/integrate-custom-select-react-select-or-other-
 
 Comments were added to explain what happens and what is expected.
 
+## Tags
+
 Repo is tagged with:
 
 `react-select-component`: Example of using React-Select to manage relation between data (multiple choice selection)
 `native-multi-select`: Example of using native select component with multiple option
+'SERVICE_NOT_IMPLEMENTED': Example of error when SDL is defined in separate file as well as service implementation is also implemented separately in custom file
 
-Issue description and reproduction:
+## Issue description and reproduction:
+
+### Select component
 
 Seems that using `Controller` component and not passing `controller` prop fixes issue with connection to Redwood forms.
 It seems this is mainly GraphQL problem at this stage.
@@ -24,8 +29,23 @@ See below:
   - depending on how onChange is implemented either full `[Book]` object array is sent or just array of IDs
   - with array of IDs app breaks or select ends up with X fields with no titles and no IDs to loop over
 
-- Other issues
-  - there is a problem with `EditBookSerieById` mutation as it reports that `book` cannot be queried (but it queries it nevertheless) and generating types or new prisma client does not help
+### SERVICE_NOT_IMPLEMENTED
+
+This happens in `api\src\graphql\custom\usersCustom.sdl.ts` only if service is implemented OUTSIDE of standard generated file (as is in this case).
+See file: `api\src\services\custom\usersCustom.ts` - there is an implementation of `seekUsersBy` query but SDL will raise an error `SERVICE_NOT_IMPLEMENTED`.
+
+### Unreproducible issues
+
+#### Types not updating for graphql.d.ts
+
+Issue reported at Redwood Forums: [Separate generated services and SDL files from custom ones](https://community.redwoodjs.com/t/separate-generated-services-and-sdl-files-from-custom-ones/3896/8)
+I could reproduce issue with the `SERVICE_NOT_DEFINED` (not mentined above), but not the one with types not generating without command, may be related to minor Redwood version bump, but changelog does not indicate any issue related to that behavior.
+
+#### GraphQL queries not updating types
+
+Seems to be related to the one above.
+
+There ~is~ **was** a problem with `EditBookSerieById` mutation as it reports that `book` cannot be queried (but it queries it nevertheless) and generating types or new prisma client does not help, rebooting PC over the weekend fixed the issue. Running Windows 10 PC.
 
 # Installation
 
@@ -39,122 +59,19 @@ Uses SQLite for DB.
 6. To see that standard select works (other side of relation) go to: [Books Admin Page](http://localhost:8910/admin/books)
 
 
-Welcome to [RedwoodJS](https://redwoodjs.com)!
+# System info
 
-> **Prerequisites**
->
-> - Redwood requires [Node.js](https://nodejs.org/en/) (>=14.19.x <=16.x) and [Yarn](https://yarnpkg.com/) (>=1.15)
-> - Are you on Windows? For best results, follow our [Windows development setup](https://redwoodjs.com/docs/how-to/windows-development-setup) guide
-
-Start by installing dependencies:
+Results of: `yarn rw info`
 
 ```
-yarn install
+System:
+    OS: Windows 10 10.0.19044
+  Binaries:
+    Node: 16.13.1 - C:\Users\SEBAST~1\AppData\Local\Temp\xfs-a74c0866\node.CMD
+    Yarn: 3.2.1 - C:\Users\SEBAST~1\AppData\Local\Temp\xfs-a74c0866\yarn.CMD
+  Browsers:
+    Chrome: 105.0.5195.53
+    Edge: Spartan (44.19041.1266.0), Chromium (105.0.1343.27)
+  npmPackages:
+    @redwoodjs/core: 2.2.3 => 2.2.3
 ```
-
-Then change into that directory and start the development server:
-
-```
-cd my-redwood-project
-yarn redwood dev
-```
-
-Your browser should automatically open to http://localhost:8910 where you'll see the Welcome Page, which links out to a ton of great resources.
-
-> **The Redwood CLI**
->
-> Congratulations on running your first Redwood CLI command!
-> From dev to deploy, the CLI is with you the whole way.
-> And there's quite a few commands at your disposal:
-> ```
-> yarn redwood --help
-> ```
-> For all the details, see the [CLI reference](https://redwoodjs.com/docs/cli-commands).
-
-## Prisma and the database
-
-Redwood wouldn't be a full-stack framework without a database. It all starts with the schema. Open the [`schema.prisma`](api/db/schema.prisma) file in `api/db` and replace the `UserExample` model with the following `Post` model:
-
-```
-model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  body      String
-  createdAt DateTime @default(now())
-}
-```
-
-Redwood uses [Prisma](https://www.prisma.io/), a next-gen Node.js and TypeScript ORM, to talk to the database. Prisma's schema offers a declarative way of defining your app's data models. And Prisma [Migrate](https://www.prisma.io/migrate) uses that schema to make database migrations hassle-free:
-
-```
-yarn rw prisma migrate dev
-
-# ...
-
-? Enter a name for the new migration: › create posts
-```
-
-> `rw` is short for `redwood`
-
-You'll be prompted for the name of your migration. `create posts` will do.
-
-Now let's generate everything we need to perform all the CRUD (Create, Retrieve, Update, Delete) actions on our `Post` model:
-
-```
-yarn redwood g scaffold post
-```
-
-Navigate to http://localhost:8910/posts/new, fill in the title and body, and click "Save":
-
-Did we just create a post in the database? Yup! With `yarn rw g scaffold <model>`, Redwood created all the pages, components, and services necessary to perform all CRUD actions on our posts table.
-
-## Frontend first with Storybook
-
-Don't know what your data models look like?
-That's more than ok—Redwood integrates Storybook so that you can work on design without worrying about data.
-Mockup, build, and verify your React components, even in complete isolation from the backend:
-
-```
-yarn rw storybook
-```
-
-Before you start, see if the CLI's `setup ui` command has your favorite styling library:
-
-```
-yarn rw setup ui --help
-```
-
-## Testing with Jest
-
-It'd be hard to scale from side project to startup without a few tests.
-Redwood fully integrates Jest with the front and the backends and makes it easy to keep your whole app covered by generating test files with all your components and services:
-
-```
-yarn rw test
-```
-
-To make the integration even more seamless, Redwood augments Jest with database [scenarios](https://redwoodjs.com/docs/testing.md#scenarios)  and [GraphQL mocking](https://redwoodjs.com/docs/testing.md#mocking-graphql-calls).
-
-## Ship it
-
-Redwood is designed for both serverless deploy targets like Netlify and Vercel and serverful deploy targets like Render and AWS:
-
-```
-yarn rw setup deploy --help
-```
-
-Don't go live without auth!
-Lock down your front and backends with Redwood's built-in, database-backed authentication system ([dbAuth](https://redwoodjs.com/docs/authentication#self-hosted-auth-installation-and-setup)), or integrate with nearly a dozen third party auth providers:
-
-```
-yarn rw setup auth --help
-```
-
-## Next Steps
-
-The best way to learn Redwood is by going through the comprehensive [tutorial](https://redwoodjs.com/docs/tutorial/foreword) and joining the community (via the [Discourse forum](https://community.redwoodjs.com) or the [Discord server](https://discord.gg/redwoodjs)).
-
-## Quick Links
-
-- Stay updated: read [Forum announcements](https://community.redwoodjs.com/c/announcements/5), follow us on [Twitter](https://twitter.com/redwoodjs), and subscribe to the [newsletter](https://redwoodjs.com/newsletter)
-- [Learn how to contribute](https://redwoodjs.com/docs/contributing)

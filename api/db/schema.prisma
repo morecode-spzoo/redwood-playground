@@ -18,6 +18,16 @@ generator client {
 //   updatedAt DateTime @updatedAt
 // }
 
+model User {
+  id          String    @id @default(cuid())
+  firstName   String
+  middleNames String?
+  lastName    String
+  dateOfBirth DateTime?
+  email       String
+  password    String
+}
+
 model Author {
   id        String       @id @default(cuid())
   idCode    String       @unique
