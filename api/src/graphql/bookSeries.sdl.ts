@@ -21,7 +21,7 @@ export const schema = gql`
   input UpdateBookSerieInput {
     idCode: String
     title: String
-    # books: BookInput how to declare proper type for mutation?
+    books: [BookInput]
   }
 
   type Mutation {
@@ -30,4 +30,4 @@ export const schema = gql`
       @requireAuth
     deleteBookSerie(id: String!): BookSerie! @requireAuth
   }
-`
+`;

@@ -1,15 +1,24 @@
+---
+title: Creating Queries and Mutations in GraphQL API side in RedwoodJS
+author: Sebastian Pieczyński
+date: 2022.09.05
+lastModified: 2022.09.06
+---
 # How to create custom Queries and Mutations in RedwoodJS
 
 ## Create SDL files
 
-Place SDL files in `[root]/api/graphql/[subdirectory]/[fileName].sdl.ts`
+Place SDL files in `[root]/api/graphql/[modelName]Manager.sdl.ts`
+Placing SDL files in `[root]/api/graphql/[subdirectory]/[fileName].sdl.ts` will also work but is discouraged.
 
+> It is recommended by RedwoodJS team to create `[model]Manager.sdl.(ts|js)` file in `[root]/api/graphql/` without subdirectories.
+> Then service MUST follow the same naming scheme in `\services\[model]Manager\[model]Manager.(ts|js)` to prevent linting errors (see below).
 
 ### Custom Type Example
 
 Exports *input type* so it can be reused as special input for mutations. It will be available in generated `graphql.d.ts` file.
 
-`/api/graphql/custom/bookCustom.sdl.(ts|js)`:
+`/api/graphql/bookManager.sdl.(ts|js)`:
 
 ```js
 export const schema = gql`
@@ -20,7 +29,7 @@ export const schema = gql`
 ```
 ### Query Example
 
-`\api\graphql\custom\usersCustom.sdl.ts`:
+`\api\graphql\userManager.sdl.ts`:
 
 ```js
 export const schema = gql`
@@ -30,9 +39,9 @@ export const schema = gql`
 `;
 ```
 
-### Mutaiton Example
+### Mutation Example
 
-`\api\graphql\custom\serieCustom.sdl.ts`:
+`\api\graphql\serieManager.sdl.ts`:
 
 ```js
 export const schema = gql`
@@ -52,16 +61,20 @@ export const schema = gql`
 
 ### Custom Query Service
 
-Service files are located in:
+Service files MUST be located in:
 
-`[root]/api/services/[subfolder]/[fileName].(ts|js)`
+`[root]/api/services/[SDL_FileName]/[SDL_FileName].(ts|js)`
+
+> It will work with different folder structure but you WILL then see error: `SERVICE_NOT_IMPLEMENTED` in IDE.
+> Using structure scheme mentioned will prevent it.
+> Examples of paths and file names are below.
 
 To type the resolver properly import `QueryResolvers` from `types/graphql` and use the name of the function as property for the `QueryResolvers`.
 That way function arguments will be checked by Typescript.
 
 Data is retreived by Prisma (instantiated as `db` in RedwoodJS). Use `db` from `import { db } from 'src/lib/db';` to retrieve correct data.
 
-`/api/src/services/custom/usersCustom.ts`:
+`/api/src/services/usersManager/usersManager.ts`:
 
 ```js
 import type { QueryResolvers } from 'types/graphql';
@@ -84,7 +97,7 @@ export const seekUsersBy: QueryResolvers['seekUsersBy'] = ({ firstName }) => {
 
 `Mutations` are similar to `Queries` but instead of retrieving data they change (or mutate) it.
 
-`/api/src/services/custom/serieCustom.ts`:
+`/api/src/services/serieManager/serieManager.ts`:
 ```js
 export const updateSerieAddBooks: MutationResolvers['updateSerieAddBooks'] = ({
   serieId,
@@ -169,7 +182,7 @@ You can use any client to query GraphQL API ex. Altair or RedwoodJS own GraphQL 
 
 Adding Books to series - this will add book to the series without affecting other Books assigned to the series already:
 
-```
+```js
 mutation updateSeriesAddBooks($seriesId: String!, $books: [BookInput!]!) {
   updateSerieAddBooks(serieId: $seriesId, books: $books) {
     id
@@ -186,7 +199,7 @@ as variables set:
 
 This is just an example. Change the ID values as these will be different on every DB seed run.
 
-```
+```js
 {
   "seriesId": "cl7ol71wy0014ycrclalbf2ir",
   "books": [{"id": "cl7ol71y10055ycrc7x8mgbrx"}]
@@ -195,7 +208,7 @@ This is just an example. Change the ID values as these will be different on ever
 
 This mutation will remove the same book from the series:
 
-```
+```js
 mutation updateSeriesRemoveBooks($seriesId: String!, $books: [BookInput!]!) {
   updateSerieRemoveBooks(serieId: $seriesId, books: $books) {
     id
@@ -210,7 +223,7 @@ mutation updateSeriesRemoveBooks($seriesId: String!, $books: [BookInput!]!) {
 
 Same as above, just an example. Change the ID values as these will be different on every DB seed run.
 
-```
+```js
 {
   "seriesId": "cl7ol71wy0014ycrclalbf2ir",
   "books": [{"id": "cl7ol71y10055ycrc7x8mgbrx"}]

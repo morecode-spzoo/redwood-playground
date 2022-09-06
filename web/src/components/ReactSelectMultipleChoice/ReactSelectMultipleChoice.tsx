@@ -1,6 +1,6 @@
-import Select from 'react-select'
+import Select from 'react-select';
 
-import { Control, Controller, FieldValues } from '@redwoodjs/forms'
+import { Control, Controller, FieldValues } from '@redwoodjs/forms';
 
 const ReactSelectMultipleChoice = ({
   name = 'series',
@@ -8,10 +8,10 @@ const ReactSelectMultipleChoice = ({
   defaultValues,
   control,
 }: {
-  name: string
-  options: []
-  defaultValues: []
-  control?: Control<FieldValues, object>
+  name: string;
+  options: [];
+  defaultValues: [];
+  control?: Control<FieldValues, object>;
 }) => {
   return (
     <Controller
@@ -30,7 +30,7 @@ const ReactSelectMultipleChoice = ({
             // this produces: Variable "$input" got invalid value { idCode: "serie_stormlight_archive", title: "Stormlight Archive", books: [[Object], [Object], [Object], [Object], [Object]] }; Field "books" is not defined by type "UpdateBookSerieInput".
             // data sent is full books object - could also be correct depending on what Redwood API really expects or should expect
             onChange={(val) => {
-              field?.onChange(val)
+              field?.onChange(val);
             }}
 
             // FIXME: EX 2:
@@ -39,9 +39,9 @@ const ReactSelectMultipleChoice = ({
             // onChange={(val) => {
             //   return field.onChange(
             //     val.map((element) => {
-            //       return element.id
+            //       return { id: element.id };
             //     })
-            //   )
+            //   );
             // }}
 
             // FIXME: EX 3:
@@ -55,10 +55,10 @@ const ReactSelectMultipleChoice = ({
             //   return field.onChange(data)
             // }}
           />
-        )
+        );
       }}
     />
-  )
-}
+  );
+};
 
-export default ReactSelectMultipleChoice
+export default ReactSelectMultipleChoice;

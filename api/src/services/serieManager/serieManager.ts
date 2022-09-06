@@ -6,9 +6,9 @@ export const updateSerieAddBooks: MutationResolvers['updateSerieAddBooks'] = ({
   serieId,
   books,
 }) => {
-  console.log('Updating series: ', serieId);
+  console.log('USER.LOG: Updating series: ', serieId);
   console.log(
-    'Adding books: ',
+    'USER.LOG: Adding books: ',
     books.map((book) => book.id)
   );
 
@@ -26,12 +26,17 @@ export const updateSerieAddBooks: MutationResolvers['updateSerieAddBooks'] = ({
 
 export const updateSerieSetBooks: MutationResolvers['updateSerieSetBooks'] = ({
   serieId,
-  books,
+  serieData,
 }) => {
-  console.log('Updating series: ', serieId);
+  console.log('USER.LOG: Updating series: ', serieId);
+  console.log('USER.LOG: SerieData: ', serieData);
   console.log(
-    'Setting books: ',
-    books.map((book) => book.id)
+    'USER.LOG: Setting books: ',
+    serieData.books
+      ? serieData.books?.map((book) => {
+          return { id: book?.id };
+        })
+      : 'USER.LOG: No books in input to change'
   );
 
   return db.bookSerie.update({
@@ -39,8 +44,11 @@ export const updateSerieSetBooks: MutationResolvers['updateSerieSetBooks'] = ({
       id: serieId,
     },
     data: {
+      ...serieData,
       books: {
-        set: books,
+        set: serieData?.books?.map((book) => {
+          return { id: book?.id };
+        }),
       },
     },
   });
@@ -48,9 +56,9 @@ export const updateSerieSetBooks: MutationResolvers['updateSerieSetBooks'] = ({
 
 export const updateSerieRemoveBooks: MutationResolvers['updateSerieRemoveBooks'] =
   ({ serieId, books }) => {
-    console.log('Updating series: ', serieId);
+    console.log('USER.LOG: Updating series: ', serieId);
     console.log(
-      'Removing books from serie: ',
+      'USER.LOG: Removing books from serie: ',
       books.map((book) => book.id)
     );
 

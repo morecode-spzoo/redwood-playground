@@ -6,6 +6,7 @@ import { useMutation } from '@redwoodjs/web';
 import { toast } from '@redwoodjs/web/toast';
 
 import BookSerieForm from 'src/components/Admin/BookSerie/BookSerieForm';
+import { stripTypenames } from 'src/utils/cleanGraphQLObject';
 
 export const QUERY = gql`
   query EditBookSerieById($id: String!) {
@@ -31,18 +32,19 @@ export const QUERY = gql`
       createdAt
       updatedAt
     }
+    # this part passes all data into form - if any that is required is missing form will not submit
     books {
-      id
+      id # only one unique field is required to make it work, ID is safest bet always
+      idCode # only
       title
     }
   }
 `;
+
 const UPDATE_BOOK_SERIE_MUTATION = gql`
-  mutation UpdateBookSerieMutation(
-    $id: String!
-    $input: UpdateBookSerieInput!
-  ) {
-    updateBookSerie(id: $id, input: $input) {
+  mutation updateSerieSetBooks($id: String!, $input: UpdateBookSerieInput) {
+    # this is a mutation that will be run from server side
+    updateSerieSetBooks(serieId: $id, serieData: $input) {
       id
       idCode
       title
@@ -66,7 +68,8 @@ export const Success = ({
   bookSerie,
   books,
 }: CellSuccessProps<EditBookSerieById>) => {
-  const [updateBookSerie, { loading, error }] = useMutation(
+  // destructured function name can be called anything you like
+  const [updateSerieSetBooks, { loading, error }] = useMutation(
     UPDATE_BOOK_SERIE_MUTATION,
     {
       onCompleted: () => {
@@ -80,7 +83,15 @@ export const Success = ({
   );
 
   const onSave = (input, id) => {
-    updateBookSerie({ variables: { id, input } });
+    // this is a must for mutation it will not work without removing __typename and you cannot add __ANYname to type as it's reserved keyword
+    input.books = stripTypenames(input.books);
+
+    updateSerieSetBooks({
+      variables: {
+        id,
+        input: input,
+      },
+    });
   };
 
   return (

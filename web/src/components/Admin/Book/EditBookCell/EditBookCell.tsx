@@ -1,11 +1,11 @@
-import type { EditBookById } from 'types/graphql'
+import type { EditBookById } from 'types/graphql';
 
-import { navigate, routes } from '@redwoodjs/router'
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
-import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/toast'
+import { navigate, routes } from '@redwoodjs/router';
+import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
+import { useMutation } from '@redwoodjs/web';
+import { toast } from '@redwoodjs/web/toast';
 
-import BookForm from 'src/components/Admin/Book/BookForm'
+import BookForm from 'src/components/Admin/Book/BookForm';
 
 export const QUERY = gql`
   query EditBookById($id: String!) {
@@ -15,7 +15,7 @@ export const QUERY = gql`
       title
       createdAt
       updatedAt
-      bookSerieId
+
       series {
         title
       }
@@ -25,7 +25,7 @@ export const QUERY = gql`
       title
     }
   }
-`
+`;
 const UPDATE_BOOK_MUTATION = gql`
   mutation UpdateBookMutation($id: String!, $input: UpdateBookInput!) {
     updateBook(id: $id, input: $input) {
@@ -37,13 +37,13 @@ const UPDATE_BOOK_MUTATION = gql`
       bookSerieId
     }
   }
-`
+`;
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <div>Loading...</div>;
 
 export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error.message}</div>
-)
+);
 
 export const Success = ({
   book,
@@ -51,17 +51,17 @@ export const Success = ({
 }: CellSuccessProps<EditBookById>) => {
   const [updateBook, { loading, error }] = useMutation(UPDATE_BOOK_MUTATION, {
     onCompleted: () => {
-      toast.success('Book updated')
-      navigate(routes.adminBooks())
+      toast.success('Book updated');
+      navigate(routes.adminBooks());
     },
     onError: (error) => {
-      toast.error(error.message)
+      toast.error(error.message);
     },
-  })
+  });
 
   const onSave = (input, id) => {
-    updateBook({ variables: { id, input } })
-  }
+    updateBook({ variables: { id, input } });
+  };
 
   return (
     <div className="rw-segment">
@@ -78,5 +78,5 @@ export const Success = ({
         />
       </div>
     </div>
-  )
-}
+  );
+};

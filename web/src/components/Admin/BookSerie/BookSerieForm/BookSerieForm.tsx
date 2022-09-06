@@ -7,14 +7,14 @@ import {
   Submit,
   useForm,
   SelectField,
-} from '@redwoodjs/forms'
+} from '@redwoodjs/forms';
 
-import ReactSelectMultipleChoice from 'src/components/ReactSelectMultipleChoice/ReactSelectMultipleChoice'
+import ReactSelectMultipleChoice from 'src/components/ReactSelectMultipleChoice/ReactSelectMultipleChoice';
 
 const BookSerieForm = (props) => {
   const onSubmit = (data) => {
-    props.onSave(data, props?.bookSerie?.id)
-  }
+    props.onSave(data, props?.bookSerie?.id);
+  };
 
   return (
     <div className="rw-form-wrapper">
@@ -111,7 +111,7 @@ const BookSerieForm = (props) => {
         </div>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default BookSerieForm
+export default BookSerieForm;

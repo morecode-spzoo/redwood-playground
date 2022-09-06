@@ -6,14 +6,12 @@ import {
   TextField,
   SelectField,
   Submit,
-} from '@redwoodjs/forms'
+} from '@redwoodjs/forms';
 
 const BookForm = (props) => {
   const onSubmit = (data) => {
-    props.onSave(data, props?.book?.id)
-  }
-
-  console.log('Form props: ', props)
+    props.onSave(data, props?.book?.id);
+  };
 
   return (
     <div className="rw-form-wrapper">
@@ -88,7 +86,7 @@ const BookForm = (props) => {
               <option value={serie?.id} key={serie?.id}>
                 {serie.title}
               </option>
-            )
+            );
           })}
         </SelectField>
 
@@ -101,7 +99,7 @@ const BookForm = (props) => {
         </div>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default BookForm
+export default BookForm;
