@@ -191,7 +191,6 @@ mutation updateSeriesAddBooks($seriesId: String!, $books: [BookInput!]!) {
       title
     }
   }
-
 }
 ```
 

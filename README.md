@@ -13,6 +13,9 @@ All fixed issues are documented in the `docs` folder.
 
 See `.md` files in `[root]/docs/` to learn how to implement some of basic functionality in RedwoodJS not directly covered by tutorial series.
 
+1. [Introduction on how to create Queries and Mutations](/docs/Creating-Queries-and-Mutations.md)
+2. [How to work with related data in custom components](/docs/Working%20with%20relational%20data%20in%20Forms.md)
+
 ## Tags
 
 Repo is tagged with:

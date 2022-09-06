@@ -50,6 +50,18 @@ export const updateSerieSetBooks: MutationResolvers['updateSerieSetBooks'] = ({
           return { id: book?.id };
         }),
       },
+      // we cannot do this since it will invoke error:
+      /*
+      Argument data.books.set of type BookWhereUniqueInput needs exactly one argument, but you provided id and title. Please choose one. Available args:
+      type BookWhereUniqueInput {
+        id?: String
+        idCode?: String
+      }
+      but this type is not generated and cannot be used instead of BookInput
+      */
+      // books: {
+      //   set: serieData?.books,
+      // },
     },
   });
 };
