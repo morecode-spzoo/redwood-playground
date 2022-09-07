@@ -42,7 +42,7 @@ export const deleteBookSerie: MutationResolvers['deleteBookSerie'] = ({
   });
 };
 
-export const BookSerie: BookSerieResolvers = {
+export const BookSerie: Partial<BookSerieResolvers> = {
   books: (_obj, { root }) =>
     db.bookSerie.findUnique({ where: { id: root.id } }).books(),
 };

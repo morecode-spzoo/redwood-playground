@@ -35,7 +35,7 @@ export const deleteBook: MutationResolvers['deleteBook'] = ({ id }) => {
   });
 };
 
-export const Book: BookResolvers = {
+export const Book: Partial<BookResolvers> = {
   series: (_obj, { root }) =>
     db.book.findUnique({ where: { id: root.id } }).series(),
   authors: (_obj, { root }) =>

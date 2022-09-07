@@ -38,7 +38,7 @@ export const deleteAuthor: MutationResolvers['deleteAuthor'] = ({ id }) => {
   });
 };
 
-export const Author: AuthorResolvers = {
+export const Author: Partial<AuthorResolvers> = {
   books: (_obj, { root }) =>
     db.author.findUnique({ where: { id: root.id } }).books(),
 };
