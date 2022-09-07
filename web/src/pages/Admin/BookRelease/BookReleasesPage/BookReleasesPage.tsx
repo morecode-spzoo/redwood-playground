@@ -1,7 +1,7 @@
-import BookReleasesCell from 'src/components/Admin/BookRelease/BookReleasesCell'
+import BookReleasesCell from 'src/components/Admin/BookRelease/BookReleasesCell';
 
 const BookReleasesPage = () => {
-  return <BookReleasesCell />
-}
+  return <BookReleasesCell />;
+};
 
-export default BookReleasesPage
+export default BookReleasesPage;

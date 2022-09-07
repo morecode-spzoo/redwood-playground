@@ -1,8 +1,8 @@
-import humanize from 'humanize-string'
+import humanize from 'humanize-string';
 
-import { Link, routes, navigate } from '@redwoodjs/router'
-import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/toast'
+import { Link, routes, navigate } from '@redwoodjs/router';
+import { useMutation } from '@redwoodjs/web';
+import { toast } from '@redwoodjs/web/toast';
 
 const DELETE_USER_MUTATION = gql`
   mutation DeleteUserMutation($id: String!) {
@@ -10,26 +10,26 @@ const DELETE_USER_MUTATION = gql`
       id
     }
   }
-`
+`;
 
 const formatEnum = (values: string | string[] | null | undefined) => {
   if (values) {
     if (Array.isArray(values)) {
-      const humanizedValues = values.map((value) => humanize(value))
-      return humanizedValues.join(', ')
+      const humanizedValues = values.map((value) => humanize(value));
+      return humanizedValues.join(', ');
     } else {
-      return humanize(values as string)
+      return humanize(values as string);
     }
   }
-}
+};
 
 const jsonDisplay = (obj) => {
   return (
     <pre>
       <code>{JSON.stringify(obj, null, 2)}</code>
     </pre>
-  )
-}
+  );
+};
 
 const timeTag = (datetime) => {
   return (
@@ -38,57 +38,65 @@ const timeTag = (datetime) => {
         {new Date(datetime).toUTCString()}
       </time>
     )
-  )
-}
+  );
+};
 
 const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
+  return <input type="checkbox" checked={checked} disabled />;
+};
 
 const User = ({ user }) => {
   const [deleteUser] = useMutation(DELETE_USER_MUTATION, {
     onCompleted: () => {
-      toast.success('User deleted')
-      navigate(routes.users())
+      toast.success('User deleted');
+      navigate(routes.users());
     },
     onError: (error) => {
-      toast.error(error.message)
+      toast.error(error.message);
     },
-  })
+  });
 
   const onDeleteClick = (id) => {
     if (confirm('Are you sure you want to delete user ' + id + '?')) {
-      deleteUser({ variables: { id } })
+      deleteUser({ variables: { id } });
     }
-  }
+  };
 
   return (
     <>
       <div className="rw-segment">
         <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">User {user.id} Detail</h2>
+          <h2 className="rw-heading rw-heading-secondary">
+            User {user.id} Detail
+          </h2>
         </header>
         <table className="rw-table">
           <tbody>
             <tr>
               <th>Id</th>
               <td>{user.id}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>First name</th>
               <td>{user.firstName}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Middle names</th>
               <td>{user.middleNames}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Last name</th>
               <td>{user.lastName}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Date of birth</th>
               <td>{timeTag(user.dateOfBirth)}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Email</th>
               <td>{user.email}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Password</th>
               <td>{user.password}</td>
             </tr>
@@ -111,7 +119,7 @@ const User = ({ user }) => {
         </button>
       </nav>
     </>
-  )
-}
+  );
+};
 
-export default User
+export default User;

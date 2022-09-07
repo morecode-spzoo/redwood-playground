@@ -1,9 +1,9 @@
-import type { FindBookAuthors } from 'types/graphql'
+import type { FindBookAuthors } from 'types/graphql';
 
-import { Link, routes } from '@redwoodjs/router'
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+import { Link, routes } from '@redwoodjs/router';
+import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
 
-import BookAuthors from 'src/components/Admin/BookAuthor/BookAuthors'
+import BookAuthors from 'src/components/Admin/BookAuthor/BookAuthors';
 
 export const QUERY = gql`
   query FindBookAuthors {
@@ -15,9 +15,9 @@ export const QUERY = gql`
       bookId
     }
   }
-`
+`;
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <div>Loading...</div>;
 
 export const Empty = () => {
   return (
@@ -27,13 +27,13 @@ export const Empty = () => {
         {'Create one?'}
       </Link>
     </div>
-  )
-}
+  );
+};
 
 export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error.message}</div>
-)
+);
 
 export const Success = ({ bookAuthors }: CellSuccessProps<FindBookAuthors>) => {
-  return <BookAuthors bookAuthors={bookAuthors} />
-}
+  return <BookAuthors bookAuthors={bookAuthors} />;
+};

@@ -1,9 +1,9 @@
-import { Link, routes } from '@redwoodjs/router'
-import { Toaster } from '@redwoodjs/web/toast'
+import { Link, routes } from '@redwoodjs/router';
+import { Toaster } from '@redwoodjs/web/toast';
 
 type AuthorLayoutProps = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 const AuthorsLayout = ({ children }: AuthorLayoutProps) => {
   return (
@@ -24,7 +24,7 @@ const AuthorsLayout = ({ children }: AuthorLayoutProps) => {
       </header>
       <main className="rw-main">{children}</main>
     </div>
-  )
-}
+  );
+};
 
-export default AuthorsLayout
+export default AuthorsLayout;

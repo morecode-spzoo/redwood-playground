@@ -1,7 +1,7 @@
-import BookAuthorsCell from 'src/components/Admin/BookAuthor/BookAuthorsCell'
+import BookAuthorsCell from 'src/components/Admin/BookAuthor/BookAuthorsCell';
 
 const BookAuthorsPage = () => {
-  return <BookAuthorsCell />
-}
+  return <BookAuthorsCell />;
+};
 
-export default BookAuthorsPage
+export default BookAuthorsPage;

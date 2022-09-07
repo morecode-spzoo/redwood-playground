@@ -1,8 +1,8 @@
-import { navigate, routes } from '@redwoodjs/router'
-import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/toast'
+import { navigate, routes } from '@redwoodjs/router';
+import { useMutation } from '@redwoodjs/web';
+import { toast } from '@redwoodjs/web/toast';
 
-import BookAuthorForm from 'src/components/Admin/BookAuthor/BookAuthorForm'
+import BookAuthorForm from 'src/components/Admin/BookAuthor/BookAuthorForm';
 
 const CREATE_BOOK_AUTHOR_MUTATION = gql`
   mutation CreateBookAuthorMutation($input: CreateBookAuthorInput!) {
@@ -10,25 +10,25 @@ const CREATE_BOOK_AUTHOR_MUTATION = gql`
       id
     }
   }
-`
+`;
 
 const NewBookAuthor = () => {
   const [createBookAuthor, { loading, error }] = useMutation(
     CREATE_BOOK_AUTHOR_MUTATION,
     {
       onCompleted: () => {
-        toast.success('BookAuthor created')
-        navigate(routes.adminBookAuthors())
+        toast.success('BookAuthor created');
+        navigate(routes.adminBookAuthors());
       },
       onError: (error) => {
-        toast.error(error.message)
+        toast.error(error.message);
       },
     }
-  )
+  );
 
   const onSave = (input) => {
-    createBookAuthor({ variables: { input } })
-  }
+    createBookAuthor({ variables: { input } });
+  };
 
   return (
     <div className="rw-segment">
@@ -39,7 +39,7 @@ const NewBookAuthor = () => {
         <BookAuthorForm onSave={onSave} loading={loading} error={error} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NewBookAuthor
+export default NewBookAuthor;

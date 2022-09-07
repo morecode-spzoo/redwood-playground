@@ -1,11 +1,11 @@
-import type { EditBookAuthorById } from 'types/graphql'
+import type { EditBookAuthorById } from 'types/graphql';
 
-import { navigate, routes } from '@redwoodjs/router'
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
-import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/toast'
+import { navigate, routes } from '@redwoodjs/router';
+import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
+import { useMutation } from '@redwoodjs/web';
+import { toast } from '@redwoodjs/web/toast';
 
-import BookAuthorForm from 'src/components/Admin/BookAuthor/BookAuthorForm'
+import BookAuthorForm from 'src/components/Admin/BookAuthor/BookAuthorForm';
 
 export const QUERY = gql`
   query EditBookAuthorById($id: String!) {
@@ -17,7 +17,7 @@ export const QUERY = gql`
       bookId
     }
   }
-`
+`;
 const UPDATE_BOOK_AUTHOR_MUTATION = gql`
   mutation UpdateBookAuthorMutation(
     $id: String!
@@ -31,13 +31,13 @@ const UPDATE_BOOK_AUTHOR_MUTATION = gql`
       bookId
     }
   }
-`
+`;
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <div>Loading...</div>;
 
 export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error.message}</div>
-)
+);
 
 export const Success = ({
   bookAuthor,
@@ -46,18 +46,18 @@ export const Success = ({
     UPDATE_BOOK_AUTHOR_MUTATION,
     {
       onCompleted: () => {
-        toast.success('BookAuthor updated')
-        navigate(routes.adminBookAuthors())
+        toast.success('BookAuthor updated');
+        navigate(routes.adminBookAuthors());
       },
       onError: (error) => {
-        toast.error(error.message)
+        toast.error(error.message);
       },
     }
-  )
+  );
 
   const onSave = (input, id) => {
-    updateBookAuthor({ variables: { id, input } })
-  }
+    updateBookAuthor({ variables: { id, input } });
+  };
 
   return (
     <div className="rw-segment">
@@ -75,5 +75,5 @@ export const Success = ({
         />
       </div>
     </div>
-  )
-}
+  );
+};

@@ -1,11 +1,11 @@
-import UserCell from 'src/components/User/UserCell'
+import UserCell from 'src/components/User/UserCell';
 
 type UserPageProps = {
-  id: string
-}
+  id: string;
+};
 
 const UserPage = ({ id }: UserPageProps) => {
-  return <UserCell id={id} />
-}
+  return <UserCell id={id} />;
+};
 
-export default UserPage
+export default UserPage;

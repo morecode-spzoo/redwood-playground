@@ -9,4 +9,4 @@ export const authorDataSeed = [
     firstName: 'Robert',
     lastName: 'Jordan',
   },
-]
+];

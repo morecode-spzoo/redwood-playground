@@ -1,7 +1,7 @@
-import NewAuthor from 'src/components/Admin/Author/NewAuthor'
+import NewAuthor from 'src/components/Admin/Author/NewAuthor';
 
 const NewAuthorPage = () => {
-  return <NewAuthor />
-}
+  return <NewAuthor />;
+};
 
-export default NewAuthorPage
+export default NewAuthorPage;

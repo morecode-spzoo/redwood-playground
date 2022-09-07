@@ -1,11 +1,11 @@
-import type { EditBookReleaseById } from 'types/graphql'
+import type { EditBookReleaseById } from 'types/graphql';
 
-import { navigate, routes } from '@redwoodjs/router'
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
-import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/toast'
+import { navigate, routes } from '@redwoodjs/router';
+import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
+import { useMutation } from '@redwoodjs/web';
+import { toast } from '@redwoodjs/web/toast';
 
-import BookReleaseForm from 'src/components/Admin/BookRelease/BookReleaseForm'
+import BookReleaseForm from 'src/components/Admin/BookRelease/BookReleaseForm';
 
 export const QUERY = gql`
   query EditBookReleaseById($id: String!) {
@@ -23,7 +23,7 @@ export const QUERY = gql`
       bookId
     }
   }
-`
+`;
 const UPDATE_BOOK_RELEASE_MUTATION = gql`
   mutation UpdateBookReleaseMutation(
     $id: String!
@@ -43,13 +43,13 @@ const UPDATE_BOOK_RELEASE_MUTATION = gql`
       bookId
     }
   }
-`
+`;
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <div>Loading...</div>;
 
 export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error.message}</div>
-)
+);
 
 export const Success = ({
   bookRelease,
@@ -58,18 +58,18 @@ export const Success = ({
     UPDATE_BOOK_RELEASE_MUTATION,
     {
       onCompleted: () => {
-        toast.success('BookRelease updated')
-        navigate(routes.adminBookReleases())
+        toast.success('BookRelease updated');
+        navigate(routes.adminBookReleases());
       },
       onError: (error) => {
-        toast.error(error.message)
+        toast.error(error.message);
       },
     }
-  )
+  );
 
   const onSave = (input, id) => {
-    updateBookRelease({ variables: { id, input } })
-  }
+    updateBookRelease({ variables: { id, input } });
+  };
 
   return (
     <div className="rw-segment">
@@ -87,5 +87,5 @@ export const Success = ({
         />
       </div>
     </div>
-  )
-}
+  );
+};

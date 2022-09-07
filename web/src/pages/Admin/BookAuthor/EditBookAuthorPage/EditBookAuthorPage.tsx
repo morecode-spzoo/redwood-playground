@@ -1,11 +1,11 @@
-import EditBookAuthorCell from 'src/components/Admin/BookAuthor/EditBookAuthorCell'
+import EditBookAuthorCell from 'src/components/Admin/BookAuthor/EditBookAuthorCell';
 
 type BookAuthorPageProps = {
-  id: string
-}
+  id: string;
+};
 
 const EditBookAuthorPage = ({ id }: BookAuthorPageProps) => {
-  return <EditBookAuthorCell id={id} />
-}
+  return <EditBookAuthorCell id={id} />;
+};
 
-export default EditBookAuthorPage
+export default EditBookAuthorPage;

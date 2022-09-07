@@ -1,7 +1,7 @@
-import NewBookAuthor from 'src/components/Admin/BookAuthor/NewBookAuthor'
+import NewBookAuthor from 'src/components/Admin/BookAuthor/NewBookAuthor';
 
 const NewBookAuthorPage = () => {
-  return <NewBookAuthor />
-}
+  return <NewBookAuthor />;
+};
 
-export default NewBookAuthorPage
+export default NewBookAuthorPage;

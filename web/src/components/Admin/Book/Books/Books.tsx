@@ -1,10 +1,10 @@
-import humanize from 'humanize-string'
+import humanize from 'humanize-string';
 
-import { Link, routes } from '@redwoodjs/router'
-import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/toast'
+import { Link, routes } from '@redwoodjs/router';
+import { useMutation } from '@redwoodjs/web';
+import { toast } from '@redwoodjs/web/toast';
 
-import { QUERY } from 'src/components/Admin/Book/BooksCell'
+import { QUERY } from 'src/components/Admin/Book/BooksCell';
 
 const DELETE_BOOK_MUTATION = gql`
   mutation DeleteBookMutation($id: String!) {
@@ -12,32 +12,32 @@ const DELETE_BOOK_MUTATION = gql`
       id
     }
   }
-`
+`;
 
-const MAX_STRING_LENGTH = 150
+const MAX_STRING_LENGTH = 150;
 
 const formatEnum = (values: string | string[] | null | undefined) => {
   if (values) {
     if (Array.isArray(values)) {
-      const humanizedValues = values.map((value) => humanize(value))
-      return humanizedValues.join(', ')
+      const humanizedValues = values.map((value) => humanize(value));
+      return humanizedValues.join(', ');
     } else {
-      return humanize(values as string)
+      return humanize(values as string);
     }
   }
-}
+};
 
 const truncate = (text) => {
-  let output = text
+  let output = text;
   if (text && text.length > MAX_STRING_LENGTH) {
-    output = output.substring(0, MAX_STRING_LENGTH) + '...'
+    output = output.substring(0, MAX_STRING_LENGTH) + '...';
   }
-  return output
-}
+  return output;
+};
 
 const jsonTruncate = (obj) => {
-  return truncate(JSON.stringify(obj, null, 2))
-}
+  return truncate(JSON.stringify(obj, null, 2));
+};
 
 const timeTag = (datetime) => {
   return (
@@ -46,33 +46,33 @@ const timeTag = (datetime) => {
         {new Date(datetime).toUTCString()}
       </time>
     )
-  )
-}
+  );
+};
 
 const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
+  return <input type="checkbox" checked={checked} disabled />;
+};
 
 const BooksList = ({ books }) => {
   const [deleteBook] = useMutation(DELETE_BOOK_MUTATION, {
     onCompleted: () => {
-      toast.success('Book deleted')
+      toast.success('Book deleted');
     },
     onError: (error) => {
-      toast.error(error.message)
+      toast.error(error.message);
     },
     // This refetches the query on the list page. Read more about other ways to
     // update the cache over here:
     // https://www.apollographql.com/docs/react/data/mutations/#making-all-other-cache-updates
     refetchQueries: [{ query: QUERY }],
     awaitRefetchQueries: true,
-  })
+  });
 
   const onDeleteClick = (id) => {
     if (confirm('Are you sure you want to delete book ' + id + '?')) {
-      deleteBook({ variables: { id } })
+      deleteBook({ variables: { id } });
     }
-  }
+  };
 
   return (
     <div className="rw-segment rw-table-wrapper-responsive">
@@ -128,7 +128,7 @@ const BooksList = ({ books }) => {
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default BooksList
+export default BooksList;

@@ -49,4 +49,4 @@ export const schema = gql`
     ): BookRelease! @requireAuth
     deleteBookRelease(id: String!): BookRelease! @requireAuth
   }
-`
+`;

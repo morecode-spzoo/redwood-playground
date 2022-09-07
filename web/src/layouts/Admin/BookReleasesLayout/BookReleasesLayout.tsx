@@ -1,9 +1,9 @@
-import { Link, routes } from '@redwoodjs/router'
-import { Toaster } from '@redwoodjs/web/toast'
+import { Link, routes } from '@redwoodjs/router';
+import { Toaster } from '@redwoodjs/web/toast';
 
 type BookReleaseLayoutProps = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 const BookReleasesLayout = ({ children }: BookReleaseLayoutProps) => {
   return (
@@ -24,7 +24,7 @@ const BookReleasesLayout = ({ children }: BookReleaseLayoutProps) => {
       </header>
       <main className="rw-main">{children}</main>
     </div>
-  )
-}
+  );
+};
 
-export default BookReleasesLayout
+export default BookReleasesLayout;

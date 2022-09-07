@@ -1,8 +1,8 @@
-import type { FindBookReleaseById } from 'types/graphql'
+import type { FindBookReleaseById } from 'types/graphql';
 
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
 
-import BookRelease from 'src/components/Admin/BookRelease/BookRelease'
+import BookRelease from 'src/components/Admin/BookRelease/BookRelease';
 
 export const QUERY = gql`
   query FindBookReleaseById($id: String!) {
@@ -20,18 +20,18 @@ export const QUERY = gql`
       bookId
     }
   }
-`
+`;
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <div>Loading...</div>;
 
-export const Empty = () => <div>BookRelease not found</div>
+export const Empty = () => <div>BookRelease not found</div>;
 
 export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error.message}</div>
-)
+);
 
 export const Success = ({
   bookRelease,
 }: CellSuccessProps<FindBookReleaseById>) => {
-  return <BookRelease bookRelease={bookRelease} />
-}
+  return <BookRelease bookRelease={bookRelease} />;
+};

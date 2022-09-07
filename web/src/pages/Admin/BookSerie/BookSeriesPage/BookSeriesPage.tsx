@@ -1,7 +1,7 @@
-import BookSeriesCell from 'src/components/Admin/BookSerie/BookSeriesCell'
+import BookSeriesCell from 'src/components/Admin/BookSerie/BookSeriesCell';
 
 const BookSeriesPage = () => {
-  return <BookSeriesCell />
-}
+  return <BookSeriesCell />;
+};
 
-export default BookSeriesPage
+export default BookSeriesPage;

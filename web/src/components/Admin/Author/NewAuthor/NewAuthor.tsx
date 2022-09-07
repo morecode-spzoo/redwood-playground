@@ -1,8 +1,8 @@
-import { navigate, routes } from '@redwoodjs/router'
-import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/toast'
+import { navigate, routes } from '@redwoodjs/router';
+import { useMutation } from '@redwoodjs/web';
+import { toast } from '@redwoodjs/web/toast';
 
-import AuthorForm from 'src/components/Admin/Author/AuthorForm'
+import AuthorForm from 'src/components/Admin/Author/AuthorForm';
 
 const CREATE_AUTHOR_MUTATION = gql`
   mutation CreateAuthorMutation($input: CreateAuthorInput!) {
@@ -10,25 +10,25 @@ const CREATE_AUTHOR_MUTATION = gql`
       id
     }
   }
-`
+`;
 
 const NewAuthor = () => {
   const [createAuthor, { loading, error }] = useMutation(
     CREATE_AUTHOR_MUTATION,
     {
       onCompleted: () => {
-        toast.success('Author created')
-        navigate(routes.adminAuthors())
+        toast.success('Author created');
+        navigate(routes.adminAuthors());
       },
       onError: (error) => {
-        toast.error(error.message)
+        toast.error(error.message);
       },
     }
-  )
+  );
 
   const onSave = (input) => {
-    createAuthor({ variables: { input } })
-  }
+    createAuthor({ variables: { input } });
+  };
 
   return (
     <div className="rw-segment">
@@ -39,7 +39,7 @@ const NewAuthor = () => {
         <AuthorForm onSave={onSave} loading={loading} error={error} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NewAuthor
+export default NewAuthor;

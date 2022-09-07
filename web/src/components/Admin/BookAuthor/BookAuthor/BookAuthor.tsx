@@ -1,8 +1,8 @@
-import humanize from 'humanize-string'
+import humanize from 'humanize-string';
 
-import { Link, routes, navigate } from '@redwoodjs/router'
-import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/toast'
+import { Link, routes, navigate } from '@redwoodjs/router';
+import { useMutation } from '@redwoodjs/web';
+import { toast } from '@redwoodjs/web/toast';
 
 const DELETE_BOOK_AUTHOR_MUTATION = gql`
   mutation DeleteBookAuthorMutation($id: String!) {
@@ -10,26 +10,26 @@ const DELETE_BOOK_AUTHOR_MUTATION = gql`
       id
     }
   }
-`
+`;
 
 const formatEnum = (values: string | string[] | null | undefined) => {
   if (values) {
     if (Array.isArray(values)) {
-      const humanizedValues = values.map((value) => humanize(value))
-      return humanizedValues.join(', ')
+      const humanizedValues = values.map((value) => humanize(value));
+      return humanizedValues.join(', ');
     } else {
-      return humanize(values as string)
+      return humanize(values as string);
     }
   }
-}
+};
 
 const jsonDisplay = (obj) => {
   return (
     <pre>
       <code>{JSON.stringify(obj, null, 2)}</code>
     </pre>
-  )
-}
+  );
+};
 
 const timeTag = (datetime) => {
   return (
@@ -38,29 +38,29 @@ const timeTag = (datetime) => {
         {new Date(datetime).toUTCString()}
       </time>
     )
-  )
-}
+  );
+};
 
 const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
+  return <input type="checkbox" checked={checked} disabled />;
+};
 
 const BookAuthor = ({ bookAuthor }) => {
   const [deleteBookAuthor] = useMutation(DELETE_BOOK_AUTHOR_MUTATION, {
     onCompleted: () => {
-      toast.success('BookAuthor deleted')
-      navigate(routes.adminBookAuthors())
+      toast.success('BookAuthor deleted');
+      navigate(routes.adminBookAuthors());
     },
     onError: (error) => {
-      toast.error(error.message)
+      toast.error(error.message);
     },
-  })
+  });
 
   const onDeleteClick = (id) => {
     if (confirm('Are you sure you want to delete bookAuthor ' + id + '?')) {
-      deleteBookAuthor({ variables: { id } })
+      deleteBookAuthor({ variables: { id } });
     }
-  }
+  };
 
   return (
     <>
@@ -111,7 +111,7 @@ const BookAuthor = ({ bookAuthor }) => {
         </button>
       </nav>
     </>
-  )
-}
+  );
+};
 
-export default BookAuthor
+export default BookAuthor;

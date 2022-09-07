@@ -1,11 +1,11 @@
-import BookReleaseCell from 'src/components/Admin/BookRelease/BookReleaseCell'
+import BookReleaseCell from 'src/components/Admin/BookRelease/BookReleaseCell';
 
 type BookReleasePageProps = {
-  id: string
-}
+  id: string;
+};
 
 const BookReleasePage = ({ id }: BookReleasePageProps) => {
-  return <BookReleaseCell id={id} />
-}
+  return <BookReleaseCell id={id} />;
+};
 
-export default BookReleasePage
+export default BookReleasePage;

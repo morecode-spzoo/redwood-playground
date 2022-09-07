@@ -2,25 +2,25 @@ import type {
   QueryResolvers,
   MutationResolvers,
   AuthorResolvers,
-} from 'types/graphql'
+} from 'types/graphql';
 
-import { db } from 'src/lib/db'
+import { db } from 'src/lib/db';
 
 export const authors: QueryResolvers['authors'] = () => {
-  return db.author.findMany()
-}
+  return db.author.findMany();
+};
 
 export const author: QueryResolvers['author'] = ({ id }) => {
   return db.author.findUnique({
     where: { id },
-  })
-}
+  });
+};
 
 export const createAuthor: MutationResolvers['createAuthor'] = ({ input }) => {
   return db.author.create({
     data: input,
-  })
-}
+  });
+};
 
 export const updateAuthor: MutationResolvers['updateAuthor'] = ({
   id,
@@ -29,16 +29,16 @@ export const updateAuthor: MutationResolvers['updateAuthor'] = ({
   return db.author.update({
     data: input,
     where: { id },
-  })
-}
+  });
+};
 
 export const deleteAuthor: MutationResolvers['deleteAuthor'] = ({ id }) => {
   return db.author.delete({
     where: { id },
-  })
-}
+  });
+};
 
 export const Author: AuthorResolvers = {
   books: (_obj, { root }) =>
     db.author.findUnique({ where: { id: root.id } }).books(),
-}
+};

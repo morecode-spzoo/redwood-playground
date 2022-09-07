@@ -6,40 +6,18 @@ import {
   TextField,
   DatetimeLocalField,
   Submit,
-} from '@redwoodjs/forms'
-
+} from '@redwoodjs/forms';
 
 const formatDatetime = (value) => {
   if (value) {
-    return value.replace(/:\d{2}\.\d{3}\w/, '')
+    return value.replace(/:\d{2}\.\d{3}\w/, '');
   }
-}
-
+};
 
 const UserForm = (props) => {
   const onSubmit = (data) => {
-
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    props.onSave(data, props?.user?.id)
-  }
+    props.onSave(data, props?.user?.id);
+  };
 
   return (
     <div className="rw-form-wrapper">
@@ -50,7 +28,7 @@ const UserForm = (props) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-      
+
         <Label
           name="firstName"
           className="rw-label"
@@ -58,15 +36,14 @@ const UserForm = (props) => {
         >
           First name
         </Label>
-        
-          <TextField
-            name="firstName"
-            defaultValue={props.user?.firstName}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+
+        <TextField
+          name="firstName"
+          defaultValue={props.user?.firstName}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="firstName" className="rw-field-error" />
 
@@ -77,14 +54,13 @@ const UserForm = (props) => {
         >
           Middle names
         </Label>
-        
-          <TextField
-            name="middleNames"
-            defaultValue={props.user?.middleNames}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-          />
-        
+
+        <TextField
+          name="middleNames"
+          defaultValue={props.user?.middleNames}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
 
         <FieldError name="middleNames" className="rw-field-error" />
 
@@ -95,15 +71,14 @@ const UserForm = (props) => {
         >
           Last name
         </Label>
-        
-          <TextField
-            name="lastName"
-            defaultValue={props.user?.lastName}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+
+        <TextField
+          name="lastName"
+          defaultValue={props.user?.lastName}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="lastName" className="rw-field-error" />
 
@@ -114,14 +89,13 @@ const UserForm = (props) => {
         >
           Date of birth
         </Label>
-        
-          <DatetimeLocalField
-            name="dateOfBirth"
-            defaultValue={formatDatetime(props.user?.dateOfBirth)}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-          />
-        
+
+        <DatetimeLocalField
+          name="dateOfBirth"
+          defaultValue={formatDatetime(props.user?.dateOfBirth)}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
 
         <FieldError name="dateOfBirth" className="rw-field-error" />
 
@@ -132,15 +106,14 @@ const UserForm = (props) => {
         >
           Email
         </Label>
-        
-          <TextField
-            name="email"
-            defaultValue={props.user?.email}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+
+        <TextField
+          name="email"
+          defaultValue={props.user?.email}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="email" className="rw-field-error" />
 
@@ -151,29 +124,25 @@ const UserForm = (props) => {
         >
           Password
         </Label>
-        
-          <TextField
-            name="password"
-            defaultValue={props.user?.password}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+
+        <TextField
+          name="password"
+          defaultValue={props.user?.password}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="password" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit
-            disabled={props.loading}
-            className="rw-button rw-button-blue"
-          >
+          <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
           </Submit>
         </div>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default UserForm
+export default UserForm;

@@ -5,12 +5,12 @@ import {
   Label,
   TextField,
   Submit,
-} from '@redwoodjs/forms'
+} from '@redwoodjs/forms';
 
 const BookAuthorForm = (props) => {
   const onSubmit = (data) => {
-    props.onSave(data, props?.bookAuthor?.id)
-  }
+    props.onSave(data, props?.bookAuthor?.id);
+  };
 
   return (
     <div className="rw-form-wrapper">
@@ -65,7 +65,7 @@ const BookAuthorForm = (props) => {
         </div>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default BookAuthorForm
+export default BookAuthorForm;

@@ -1,11 +1,11 @@
-import BookAuthorCell from 'src/components/Admin/BookAuthor/BookAuthorCell'
+import BookAuthorCell from 'src/components/Admin/BookAuthor/BookAuthorCell';
 
 type BookAuthorPageProps = {
-  id: string
-}
+  id: string;
+};
 
 const BookAuthorPage = ({ id }: BookAuthorPageProps) => {
-  return <BookAuthorCell id={id} />
-}
+  return <BookAuthorCell id={id} />;
+};
 
-export default BookAuthorPage
+export default BookAuthorPage;

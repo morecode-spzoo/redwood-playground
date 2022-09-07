@@ -7,17 +7,15 @@
 // 'src/pages/HomePage/HomePage.js'         -> HomePage
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
-import { Set, Router, Route } from '@redwoodjs/router'
+import { Set, Router, Route } from '@redwoodjs/router';
 
-import UsersLayout from 'src/layouts/UsersLayout'
-
-import BookSeriesLayout from 'src/layouts/Admin/BookSeriesLayout'
-
-import AuthorsLayout from 'src/layouts/Admin/AuthorsLayout'
-import BookAuthorsLayout from 'src/layouts/Admin/BookAuthorsLayout'
-import BookReleasesLayout from 'src/layouts/Admin/BookReleasesLayout'
-import BookSerieLayout from 'src/layouts/Admin/BookSeriesLayout'
-import BooksLayout from 'src/layouts/Admin/BooksLayout'
+import AuthorsLayout from 'src/layouts/Admin/AuthorsLayout';
+import BookAuthorsLayout from 'src/layouts/Admin/BookAuthorsLayout';
+import BookReleasesLayout from 'src/layouts/Admin/BookReleasesLayout';
+import BookSeriesLayout from 'src/layouts/Admin/BookSeriesLayout';
+import BookSerieLayout from 'src/layouts/Admin/BookSeriesLayout';
+import BooksLayout from 'src/layouts/Admin/BooksLayout';
+import UsersLayout from 'src/layouts/UsersLayout';
 
 const Routes = () => {
   return (
@@ -60,7 +58,7 @@ const Routes = () => {
       </Set>
       <Route notfound page={NotFoundPage} />
     </Router>
-  )
-}
+  );
+};
 
-export default Routes
+export default Routes;

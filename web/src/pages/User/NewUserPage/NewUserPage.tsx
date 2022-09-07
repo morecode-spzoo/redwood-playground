@@ -1,7 +1,7 @@
-import NewUser from 'src/components/User/NewUser'
+import NewUser from 'src/components/User/NewUser';
 
 const NewUserPage = () => {
-  return <NewUser />
-}
+  return <NewUser />;
+};
 
-export default NewUserPage
+export default NewUserPage;

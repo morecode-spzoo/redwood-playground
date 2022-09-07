@@ -1,4 +1,4 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
 export const standard = defineScenario<Prisma.BookAuthorCreateArgs>({
   bookAuthor: {
@@ -43,6 +43,6 @@ export const standard = defineScenario<Prisma.BookAuthorCreateArgs>({
       },
     },
   },
-})
+});
 
-export type StandardScenario = typeof standard
+export type StandardScenario = typeof standard;

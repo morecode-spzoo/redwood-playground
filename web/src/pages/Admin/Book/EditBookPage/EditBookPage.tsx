@@ -1,11 +1,11 @@
-import EditBookCell from 'src/components/Admin/Book/EditBookCell'
+import EditBookCell from 'src/components/Admin/Book/EditBookCell';
 
 type BookPageProps = {
-  id: string
-}
+  id: string;
+};
 
 const EditBookPage = ({ id }: BookPageProps) => {
-  return <EditBookCell id={id} />
-}
+  return <EditBookCell id={id} />;
+};
 
-export default EditBookPage
+export default EditBookPage;

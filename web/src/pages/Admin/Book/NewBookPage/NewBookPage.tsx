@@ -1,7 +1,7 @@
-import NewBook from 'src/components/Admin/Book/NewBook'
+import NewBook from 'src/components/Admin/Book/NewBook';
 
 const NewBookPage = () => {
-  return <NewBook />
-}
+  return <NewBook />;
+};
 
-export default NewBookPage
+export default NewBookPage;

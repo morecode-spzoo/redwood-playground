@@ -1,11 +1,11 @@
-import AuthorCell from 'src/components/Admin/Author/AuthorCell'
+import AuthorCell from 'src/components/Admin/Author/AuthorCell';
 
 type AuthorPageProps = {
-  id: string
-}
+  id: string;
+};
 
 const AuthorPage = ({ id }: AuthorPageProps) => {
-  return <AuthorCell id={id} />
-}
+  return <AuthorCell id={id} />;
+};
 
-export default AuthorPage
+export default AuthorPage;

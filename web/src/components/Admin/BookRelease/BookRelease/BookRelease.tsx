@@ -1,8 +1,8 @@
-import humanize from 'humanize-string'
+import humanize from 'humanize-string';
 
-import { Link, routes, navigate } from '@redwoodjs/router'
-import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/toast'
+import { Link, routes, navigate } from '@redwoodjs/router';
+import { useMutation } from '@redwoodjs/web';
+import { toast } from '@redwoodjs/web/toast';
 
 const DELETE_BOOK_RELEASE_MUTATION = gql`
   mutation DeleteBookReleaseMutation($id: String!) {
@@ -10,26 +10,26 @@ const DELETE_BOOK_RELEASE_MUTATION = gql`
       id
     }
   }
-`
+`;
 
 const formatEnum = (values: string | string[] | null | undefined) => {
   if (values) {
     if (Array.isArray(values)) {
-      const humanizedValues = values.map((value) => humanize(value))
-      return humanizedValues.join(', ')
+      const humanizedValues = values.map((value) => humanize(value));
+      return humanizedValues.join(', ');
     } else {
-      return humanize(values as string)
+      return humanize(values as string);
     }
   }
-}
+};
 
 const jsonDisplay = (obj) => {
   return (
     <pre>
       <code>{JSON.stringify(obj, null, 2)}</code>
     </pre>
-  )
-}
+  );
+};
 
 const timeTag = (datetime) => {
   return (
@@ -38,29 +38,29 @@ const timeTag = (datetime) => {
         {new Date(datetime).toUTCString()}
       </time>
     )
-  )
-}
+  );
+};
 
 const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
+  return <input type="checkbox" checked={checked} disabled />;
+};
 
 const BookRelease = ({ bookRelease }) => {
   const [deleteBookRelease] = useMutation(DELETE_BOOK_RELEASE_MUTATION, {
     onCompleted: () => {
-      toast.success('BookRelease deleted')
-      navigate(routes.adminBookReleases())
+      toast.success('BookRelease deleted');
+      navigate(routes.adminBookReleases());
     },
     onError: (error) => {
-      toast.error(error.message)
+      toast.error(error.message);
     },
-  })
+  });
 
   const onDeleteClick = (id) => {
     if (confirm('Are you sure you want to delete bookRelease ' + id + '?')) {
-      deleteBookRelease({ variables: { id } })
+      deleteBookRelease({ variables: { id } });
     }
-  }
+  };
 
   return (
     <>
@@ -135,7 +135,7 @@ const BookRelease = ({ bookRelease }) => {
         </button>
       </nav>
     </>
-  )
-}
+  );
+};
 
-export default BookRelease
+export default BookRelease;

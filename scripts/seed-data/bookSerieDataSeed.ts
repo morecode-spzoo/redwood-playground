@@ -7,4 +7,4 @@ export const bookSerieDataSeed = [
     idCode: 'serie_wheel_of_time',
     title: 'Wheel of Time',
   },
-]
+];

@@ -30,4 +30,4 @@ export const schema = gql`
       @requireAuth
     deleteBookAuthor(id: String!): BookAuthor! @requireAuth
   }
-`
+`;

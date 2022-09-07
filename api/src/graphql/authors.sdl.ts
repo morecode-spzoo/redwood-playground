@@ -34,4 +34,4 @@ export const schema = gql`
     updateAuthor(id: String!, input: UpdateAuthorInput!): Author! @requireAuth
     deleteAuthor(id: String!): Author! @requireAuth
   }
-`
+`;

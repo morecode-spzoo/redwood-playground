@@ -1,7 +1,7 @@
-import NewBookSerie from 'src/components/Admin/BookSerie/NewBookSerie'
+import NewBookSerie from 'src/components/Admin/BookSerie/NewBookSerie';
 
 const NewBookSeriePage = () => {
-  return <NewBookSerie />
-}
+  return <NewBookSerie />;
+};
 
-export default NewBookSeriePage
+export default NewBookSeriePage;

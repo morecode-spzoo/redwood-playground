@@ -1,7 +1,7 @@
-import AuthorsCell from 'src/components/Admin/Author/AuthorsCell'
+import AuthorsCell from 'src/components/Admin/Author/AuthorsCell';
 
 const AuthorsPage = () => {
-  return <AuthorsCell />
-}
+  return <AuthorsCell />;
+};
 
-export default AuthorsPage
+export default AuthorsPage;
