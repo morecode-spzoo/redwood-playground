@@ -6,7 +6,7 @@ export const findReleasesBetween: QueryResolvers['findReleasesBetween'] = ({
   startDate,
   endDate,
 }) => {
-  db.bookRelease.findMany({
+  return db.bookRelease.findMany({
     where: {
       releaseDate: {
         gte: startDate,
