@@ -8,7 +8,7 @@ export const schema = gql`
     releases: [BookRelease]!
     createdAt: DateTime!
     updatedAt: DateTime!
-    bookSerieId: String!
+    bookSerieId: String
   }
 
   type Query {
@@ -19,7 +19,7 @@ export const schema = gql`
   input CreateBookInput {
     idCode: String!
     title: String!
-    bookSerieId: String!
+    bookSerieId: String
   }
 
   input UpdateBookInput {
