@@ -6,7 +6,7 @@ import { useMutation } from '@redwoodjs/web';
 import { toast } from '@redwoodjs/web/toast';
 
 import BookSerieForm from 'src/components/Admin/BookSerie/BookSerieForm';
-import { stripTypenames } from 'src/utils/cleanGraphQLObject';
+import { removeTypenamePropertyFromObject } from 'src/utils/removeTypenamePropertyFromObject';
 
 export const QUERY = gql`
   query EditBookSerieById($id: String!) {
@@ -84,7 +84,7 @@ export const Success = ({
 
   const onSave = (input, id) => {
     // this is a must for mutation it will not work without removing __typename and you cannot add __ANYname to type as it's reserved keyword
-    input.books = stripTypenames(input.books);
+    input.books = removeTypenamePropertyFromObject(input.books);
 
     updateSerieSetBooks({
       variables: {

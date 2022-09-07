@@ -17,7 +17,7 @@ There are multiple steps involved and I'll list them here briefly and then we wi
 3. Modify `Edit...Cell` to fetch data for select component.
 4. Modify `Edit...Cell` to update data.
 5. Modify `Edit...Cell` to strip fetched data of `__typename` added by Apollo Server for query caching purposes.
-6. .
+6.
 
 
 In this project we are adding connection between `Books` and `Serie` on the series side since that one will hold references to many books.
@@ -92,12 +92,12 @@ const UPDATE_BOOK_SERIE_MUTATION = gql`
 `;
 ```
 
-Now one of the most important and unintuitive parts. Apollo server adds `__typename` to the query results for caching purposes and that data is also part of our input. Our `Update...` will not accept it and we cannot add `__typename` to the type itself as it's reserved keyword. The only way I did find is to remove this property from the object with `stripTypenames` - it is a custom function created in `[root]/utils` folder.
+Now one of the most important and unintuitive parts. Apollo server adds `__typename` to the query results for caching purposes and that data is also part of our input. Our `Update...` will not accept it and we cannot add `__typename` to the type itself as it's reserved keyword. The only way I did find is to remove this property from the object with `removeTypenamePropertyFromObject` - it is a custom function created in `[root]/web/src/utils` folder.
 
 ```js
 const onSave = (input, id) => {
     // this is a must for mutation it will not work without removing __typename and you cannot add __ANYname to type as it's reserved keyword
-    input.books = stripTypenames(input.books);
+    input.books = removeTypenamePropertyFromObject(input.books);
 
     updateSerieSetBooks({
       variables: {
@@ -110,7 +110,9 @@ const onSave = (input, id) => {
 
 With that our data is ready to be processed and saved.
 
-At this point the WEB side is ready and we need to modify the API side that will allow us to modify both `Serie` data as well as it's relation to `Book`s:
+At this point the WEB side is ready and we need to modify the API side that will allow us to modify both `Serie` data as well as it's relation to `Book`s.
+
+In `services/serieManager.ts`:
 
 ```js
 export const updateSerieSetBooks: MutationResolvers['updateSerieSetBooks'] = ({

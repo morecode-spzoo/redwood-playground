@@ -1,11 +1,11 @@
-export function stripTypenames(value) {
+export function removeTypenamePropertyFromObject(value) {
   if (Array.isArray(value)) {
-    return value.map(stripTypenames);
+    return value.map(removeTypenamePropertyFromObject);
   } else if (value !== null && typeof value === 'object') {
     const newObject = {};
     for (const property in value) {
       if (property !== '__typename') {
-        newObject[property] = stripTypenames(value[property]);
+        newObject[property] = removeTypenamePropertyFromObject(value[property]);
       }
     }
     return newObject;
