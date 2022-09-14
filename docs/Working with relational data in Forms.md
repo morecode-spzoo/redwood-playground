@@ -85,7 +85,7 @@ query EditBookSerieById($id: String!) {
 `;
 ```
 
-Create or modify a mutation for update action, notice that as input we are using the modified `UpdateBookSerieInput`:
+Create or modify a mutation for update action, notice that as input we are using the **modified** `UpdateBookSerieInput`:
 
 ```js
 const UPDATE_BOOK_SERIE_MUTATION = gql`
@@ -164,7 +164,7 @@ Mutation to run will now look like:
 
 ```gql
 mutation updateSeriesSetBooks($serieId: String!, $serieData: UpdateBookSerieInput) {
-  updateSerieSetBooks(serieId: $serieId, serieData: $serieData) {
+  updateSerieSetBooks(serieId: $serieId, serieData: $serieData) { # <- change this mutation name to custom mutation
     id
     idCode
     title
