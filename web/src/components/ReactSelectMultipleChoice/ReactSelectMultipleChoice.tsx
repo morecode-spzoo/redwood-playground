@@ -26,6 +26,7 @@ const ReactSelectMultipleChoice = ({
             getOptionValue={(option) => option?.id}
             getOptionLabel={(option) => option?.title}
             isMulti
+            // menuIsOpen={true} // use this to force open the select dropdown for debugging
             // FIXME: EX: 1
             // this produces: Variable "$input" got invalid value { idCode: "serie_stormlight_archive", title: "Stormlight Archive", books: [[Object], [Object], [Object], [Object], [Object]] }; Field "books" is not defined by type "UpdateBookSerieInput".
             // data sent is full books object - could also be correct depending on what Redwood API really expects or should expect

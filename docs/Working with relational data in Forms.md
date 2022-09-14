@@ -36,7 +36,10 @@ export const schema = gql`
 `;
 ```
 
-Now we can add `books` field to the `bookSeries.sdl.ts` this will make sure that we expect this data to be sent from the form.
+Now we can add `books` field to the `UpdateBookSerieInput` from `bookSeries.sdl.ts` this will make sure that we expect this data to be sent from the form. Please move the input to the manager file.
+
+> **IMPORTANT!**
+> Cut and paste this Input into the `...Manager.sdl.ts` file as any forced recreation will destroy it!
 
 ```js
   input UpdateBookSerieInput {
@@ -46,7 +49,18 @@ Now we can add `books` field to the `bookSeries.sdl.ts` this will make sure that
   }
 ```
 
-Edit the `EditBookSerieCell.tsx` in `web` side and modify the :
+Then create or edit the `api/src/graphql/serieManager.sdl.ts` file and add new Mutation that will be responsible for updating the Serie model with Book relations:
+
+```js
+export const schema = gql`
+  type Mutation {
+    #prettier-ignore - because the @requireAuth may be moved to another line and we do not want this to happen
+    updateSerieSetBooks(serieId: String!, serieData: UpdateBookSerieInput,  books: [BookInput]): BookSerie @requireAuth
+  }
+`;
+```
+
+Afterwards edit the `EditBookSerieCell.tsx` in `web` side and modify the `query` to fetch all books:
 
 ```js
 query EditBookSerieById($id: String!) {
